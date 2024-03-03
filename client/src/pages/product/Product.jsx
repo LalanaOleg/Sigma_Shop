@@ -1,8 +1,13 @@
 import React from 'react';
+import Container from '../../components/container/Container';
 import './Product.scss';
 
 const Product = () => {
-	return <div>Product</div>;
+	return (
+		<main>
+			<Container>Account</Container>
+		</main>
+	);
 };
 
 export default Product;
