@@ -11,11 +11,11 @@ const App = observer(() => {
 	const { user } = useContext(Context);
 	return (
 		<div className="wrapper">
-			<Header />
 			<BrowserRouter>
+				<Header />
 				<AppRouter />
+				<Footer />
 			</BrowserRouter>
-			<Footer />
 		</div>
 	);
 });
