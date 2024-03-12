@@ -12,8 +12,23 @@ export default function SelectList({ items, title }) {
 
 	const selectListRef = useRef(null);
 	useEffect(() => {
-
-		// Handler to call on window resize
+		//initialise height
+		if (window.innerWidth < breakPoint) {
+			setTimeout(function () {
+				window.requestAnimationFrame(
+					() => (bodyRef.current.style.height = 0)
+				);
+			}, 0);
+		} else {
+			setTimeout(function () {
+				window.requestAnimationFrame(
+					() =>
+						(bodyRef.current.style.height =
+							contentRef.current.offsetHeight + 'px')
+				);
+			}, 0);
+		}
+		// change height and styles depends on the width of screen
 		function handleResize() {
 			if (window.innerWidth < breakPoint) {
 				if (selectListRef.current.classList.contains('big')) {
@@ -40,7 +55,9 @@ export default function SelectList({ items, title }) {
 					contentWidth = contentRef.current.offsetHeight;
 					setTimeout(function () {
 						window.requestAnimationFrame(
-							() => (bodyRef.current.style.height = contentRef.current.offsetHeight + 'px')
+							() =>
+								(bodyRef.current.style.height =
+									contentRef.current.offsetHeight + 'px')
 						);
 					}, 0);
 				}
@@ -51,14 +68,16 @@ export default function SelectList({ items, title }) {
 		handleResize();
 		return () => window.removeEventListener('resize', handleResize);
 	}, []);
-
+	
 	function showBody(e) {
 		if (e.target.closest('.selectList').classList.contains('big')) return;
 		const title = e.target.closest('.selectList__title');
 		if (!title.classList.contains('_active')) {
 			setTimeout(function () {
 				window.requestAnimationFrame(
-					() => (bodyRef.current.style.height = contentRef.current.offsetHeight + 'px')
+					() =>
+						(bodyRef.current.style.height =
+							contentRef.current.offsetHeight + 'px')
 				);
 			}, 0);
 			title.classList.add('_active');
