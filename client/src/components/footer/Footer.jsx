@@ -15,7 +15,7 @@ const Footer = () => {
 		{ title: 'Payment Options', href: HOME_ROUTE },
 		{ title: 'Returns', href: SHOP_ROUTE },
 		{ title: 'Privacy Policies', href: HOME_ROUTE },
-	]
+	];
 
 	return (
 		<footer className="footer">
@@ -30,26 +30,37 @@ const Footer = () => {
 						</p>
 					</div>
 
-					<SelectList className="selectList" items={listLinks} title="Links" />
-					<SelectList className="selectList" items={lsitHelp} title="Help" />
+					
+						<SelectList
+							className="selectList"
+							items={listLinks}
+							title="Links"
+						/>
+						<SelectList
+							className="selectList"
+							items={lsitHelp}
+							title="Help"
+						/>
 
-					<div className="footer__newsletter newsletter">
-						<h3 className="newsletter__title">Newsletter</h3>
-						<form className="newsletter__form" action="">
-							<input
-								placeholder="Enter your email address"
-								className="newsletter__input"
-								type="text"
-							/>
-							<button
-								onClick={(e) => e.preventDefault()}
-								className="newsletter__button"
-							>
-								SUBSCRIBE
-							</button>
-						</form>
-					</div>
+						<div className="footer__newsletter newsletter">
+							<h3 className="newsletter__title">Newsletter</h3>
+							<form className="newsletter__form" action="">
+								<input
+									placeholder="Enter your email address"
+									className="newsletter__input"
+									type="text"
+								/>
+								<button
+									onClick={(e) => e.preventDefault()}
+									className="newsletter__button"
+								>
+									SUBSCRIBE
+								</button>
+							</form>
+						</div>
+					
 				</div>
+
 				<div className="footer__rights">
 					2023 funiro. All rights reverved
 				</div>

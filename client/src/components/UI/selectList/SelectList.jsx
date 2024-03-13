@@ -11,22 +11,20 @@ export default function SelectList({ items, title }) {
 	let contentWidth = 0;
 
 	const selectListRef = useRef(null);
+
+	function setHeight(height) {
+		setTimeout(function () {
+			window.requestAnimationFrame(
+				() => (bodyRef.current.style.height = height + 'px')
+			);
+		}, 0);
+	}
 	useEffect(() => {
 		//initialise height
 		if (window.innerWidth < breakPoint) {
-			setTimeout(function () {
-				window.requestAnimationFrame(
-					() => (bodyRef.current.style.height = 0)
-				);
-			}, 0);
+			setHeight(0);
 		} else {
-			setTimeout(function () {
-				window.requestAnimationFrame(
-					() =>
-						(bodyRef.current.style.height =
-							contentRef.current.offsetHeight + 'px')
-				);
-			}, 0);
+			setHeight(contentRef.current.offsetHeight);
 		}
 		// change height and styles depends on the width of screen
 		function handleResize() {
@@ -38,11 +36,7 @@ export default function SelectList({ items, title }) {
 					if (title.classList.contains('_active')) {
 						title.classList.remove('_active');
 					}
-					setTimeout(function () {
-						window.requestAnimationFrame(
-							() => (bodyRef.current.style.height = 0)
-						);
-					}, 0);
+					setHeight(0);
 				}
 				if (contentWidth != contentRef.current.offsetHeight) {
 					contentWidth = contentRef.current.offsetHeight;
@@ -53,13 +47,7 @@ export default function SelectList({ items, title }) {
 				}
 				if (contentWidth != contentRef.current.offsetHeight) {
 					contentWidth = contentRef.current.offsetHeight;
-					setTimeout(function () {
-						window.requestAnimationFrame(
-							() =>
-								(bodyRef.current.style.height =
-									contentRef.current.offsetHeight + 'px')
-						);
-					}, 0);
+					setHeight(contentRef.current.offsetHeight);
 				}
 			}
 		}
@@ -68,32 +56,22 @@ export default function SelectList({ items, title }) {
 		handleResize();
 		return () => window.removeEventListener('resize', handleResize);
 	}, []);
-	
+
 	function showBody(e) {
 		if (e.target.closest('.selectList').classList.contains('big')) return;
 		const title = e.target.closest('.selectList__title');
 		if (!title.classList.contains('_active')) {
-			setTimeout(function () {
-				window.requestAnimationFrame(
-					() =>
-						(bodyRef.current.style.height =
-							contentRef.current.offsetHeight + 'px')
-				);
-			}, 0);
+			setHeight(contentRef.current.offsetHeight);
 			title.classList.add('_active');
 		} else {
-			setTimeout(function () {
-				window.requestAnimationFrame(
-					() => (bodyRef.current.style.height = 0)
-				);
-			}, 0);
+			setHeight(0);
 			title.classList.remove('_active');
 		}
 	}
 	return (
 		<ul ref={selectListRef} className="selectList">
 			<div onClick={(e) => showBody(e)} className="selectList__title">
-				<span>{title}</span>
+				{title}
 			</div>
 			<div ref={bodyRef} className="selectList__body">
 				<div ref={contentRef} className="selectList__content">
