@@ -27,6 +27,8 @@ $mainColor: #000;
 $sandColor: #fbebb5;
 $lightSandColor: #fff9e5;
 $greyColor: #9f9f9f;
+$lightGreyColor: #b0b0b0;
+$darkGreyColor: #3a3a3a;
 $goldColor: #b88e2f;
 
 // Мінімальна ширина сторінки
@@ -47,6 +49,39 @@ $pc: em($containerWidth); // ПК, ноутбуки, деякі планшети
 $tablet: em(991.98); // Планшети, деякі телефони в горизонтальному положенні
 $mobile: em(767.98); // Телефони L
 $mobileSmall: em(479.98); // Телефони S
+
+// extend classes
+%linkHover {
+	transition: color 0.3s;
+	@media (any-hover: hover) {
+		&:hover {
+			color: $goldColor;
+		}
+	}
+}
+%ic {
+	font-family: "icons";
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+// for image to cover
+[class*="-ibg"] {
+	position: relative;
+	img {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		object-fit: cover;
+	}
+}
 
 // Адаптивна властивість (clamp)
 @mixin adaptiveValue($property, $startSize, $minSize, $keepSize: 0, $widthFrom: $containerWidth, $widthTo: $minWidth) {
