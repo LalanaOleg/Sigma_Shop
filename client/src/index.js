@@ -4,6 +4,7 @@ import './index.scss';
 import App from './App';
 import { UserStore } from './stores/UserStore';
 import { ProductStore } from './stores/ProductStore';
+import { CartStore } from './stores/CartStore';
 
 export const Context = createContext(null);
 
@@ -14,6 +15,7 @@ root.render(
 			value={{
 				user: new UserStore(),
 				products: new ProductStore(),
+				cart: new CartStore(),
 			}}
 		>
 			<App />

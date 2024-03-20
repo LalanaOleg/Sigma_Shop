@@ -1,7 +1,7 @@
-import first from '../../assets/img/test-products/01.jpg';
-import second from '../../assets/img/test-products/02.jpg';
-import third from '../../assets/img/test-products/03.jpg';
-import fouth from '../../assets/img/test-products/04.jpg';
+import first from '../assets/img/test-products/01.jpg';
+import second from '../assets/img/test-products/02.jpg';
+import third from '../assets/img/test-products/03.jpg';
+import fouth from '../assets/img/test-products/04.jpg';
 
 let i = 0;
 export const testArray = [

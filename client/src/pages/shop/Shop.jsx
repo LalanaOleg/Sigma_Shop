@@ -7,15 +7,15 @@ import './Shop.scss';
 import Features from '../../components/features/Features.jsx';
 import { Context } from '../../index.js';
 import { observer } from 'mobx-react';
-// !---------------------------------------
-import { testArray } from './testData.js';
+import { ProductsAPI } from '../../http/productsAPI.js';
 
 function Shop() {
 	const { products } = useContext(Context);
 
-	// ! It is just test data
 	useEffect(() => {
-		products.setProducts(testArray);
+		ProductsAPI.fetchProducts(1, 2).then((res) => {
+			products.setProducts(res);
+		});
 	}, []);
 
 	return (

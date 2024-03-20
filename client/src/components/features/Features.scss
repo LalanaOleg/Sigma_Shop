@@ -1,7 +1,6 @@
 @import '../../utils/common.scss';
 
 .features {
-	margin-top: toRem(200);
 	background: #faf3ea;
 	@include adaptiveValue("padding-top", 100, 25);
 	@include adaptiveValue("padding-bottom", 100, 25);
