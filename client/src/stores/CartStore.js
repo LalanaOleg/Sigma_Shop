@@ -7,7 +7,7 @@ import { makeAutoObservable } from "mobx";
  * @property {string} imageURL - main image of product.
  * @property {string} name - name of product.
  * @property {number} price - price of product.
- * @property {number} amoun - amount of product.
+ * @property {number} amount - amount of product.
  */
 
 export class CartStore {
