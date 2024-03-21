@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { authRoutes, publicRoutes } from '../utils/routes';
+import { adminRoutes, authRoutes, publicRoutes } from '../utils/routes';
 import { Context } from '../index';
 import { observer } from 'mobx-react';
 import { HOME_ROUTE } from '../utils/paths';
@@ -10,6 +10,10 @@ const AppRouter = observer(() => {
 
 	return (
 		<Routes>
+			{user.data.role === 'admin' &&
+				adminRoutes.map(({ path, Component }) => (
+					<Route key={path} path={path} element={<Component />} />
+				))}
 			{user.isAuth &&
 				authRoutes.map(({ path, Component }) => (
 					<Route key={path} path={path} element={<Component />} />

@@ -6,8 +6,26 @@ import {
 	CART_ROUTE,
 	REGISTRATION_ROUTE,
 	LOGIN_ROUTE,
+	ADMIN_MENU_ROUTE,
+	CHECKOUT_ROUTE,
 } from './paths.js';
-import { Home, Account, Auth, Product, Cart, Shop } from '../pages/pages.js';
+import {
+	Home,
+	Account,
+	Auth,
+	Product,
+	Cart,
+	Shop,
+	AdminMenu,
+	Checkout,
+} from '../pages/pages.js';
+
+export const adminRoutes = [
+	{
+		path: ADMIN_MENU_ROUTE,
+		Component: AdminMenu,
+	},
+];
 
 export const authRoutes = [
 	{
@@ -40,5 +58,9 @@ export const publicRoutes = [
 	{
 		path: CART_ROUTE,
 		Component: Cart,
+	},
+	{
+		path: CHECKOUT_ROUTE,
+		Component: Checkout,
 	},
 ];
