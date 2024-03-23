@@ -1,16 +1,15 @@
 package com.example.command.mapper;
 
 import com.example.command.entity.Product;
-import com.example.command.entity.ProductDto;
+import com.example.command.dto.ProductDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
-import java.util.Objects;
 
+// клас для перетоврення dto в простий об'єкт і на оборот
 @Component
-
 public class ProductMapper {
     public ProductDto toProductDto(Product product) {
         ProductDto productDto = new ProductDto();
@@ -49,17 +48,5 @@ public class ProductMapper {
 
         return product;
     }
-
-    //Перетворення мапи в json
-    private String convertMapToJson(Map<String, Object> map){
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            return objectMapper.writeValueAsString(map);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
 
 }
