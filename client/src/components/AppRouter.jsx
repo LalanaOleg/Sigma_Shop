@@ -10,7 +10,7 @@ const AppRouter = observer(() => {
 
 	return (
 		<Routes>
-			{user.data.role === 'admin' &&
+			{user.userData.role === 'admin' &&
 				adminRoutes.map(({ path, Component }) => (
 					<Route key={path} path={path} element={<Component />} />
 				))}

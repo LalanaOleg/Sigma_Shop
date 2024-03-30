@@ -14,7 +14,7 @@ function Shop() {
 
 	useEffect(() => {
 		ProductsAPI.fetchProducts(1, 2).then((res) => {
-			products.setProducts(res);
+			products.setProducts(res.data.products);
 		});
 	}, []);
 

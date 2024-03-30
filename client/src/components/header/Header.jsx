@@ -1,17 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Container from '../container/Container.jsx';
-import { ACCOUNT_ROUTE, HOME_ROUTE, SHOP_ROUTE } from '../../utils/paths.js';
-import { NavLink, useLocation } from 'react-router-dom';
+import {
+	ACCOUNT_ROUTE,
+	HOME_ROUTE,
+	SHOP_ROUTE,
+	LOGIN_ROUTE,
+	REGISTRATION_ROUTE,
+} from '../../utils/paths.js';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import {
 	bodyLockToggle,
 	bodyUnlock,
 	getScrollBarSize,
 } from '../../utils/functions.js';
+import { Context } from '../../index.js';
 import './Header.scss';
 
 const Header = () => {
 	const [isMenuActive, setIsMenuActive] = useState(false);
 	const location = useLocation();
+	const { user } = useContext(Context);
 
 	// close menu on location change
 	useEffect(() => {
@@ -28,6 +36,30 @@ const Header = () => {
 		bodyUnlock(0);
 		setIsMenuActive(false);
 		document.documentElement.classList.remove('menu-open');
+	}
+
+	let accountButton;
+	if (user.isAuth) {
+		accountButton = (
+			<NavLink
+				to={ACCOUNT_ROUTE}
+				className="actions-header__icon _icon-account"
+			></NavLink>
+		);
+	} else if (location.pathname === LOGIN_ROUTE) {
+		accountButton = (
+			<Link
+				to={REGISTRATION_ROUTE}
+				className="actions-header__icon _icon-account-create"
+			></Link>
+		);
+	} else {
+		accountButton = (
+			<Link
+				to={LOGIN_ROUTE}
+				className="actions-header__icon _icon-sign-in"
+			></Link>
+		);
 	}
 
 	return (
@@ -68,12 +100,7 @@ const Header = () => {
 						</ul>
 					</nav>
 					<ul className="header__actions actions-header">
-						<li className="actions-header__item">
-							<NavLink
-								to={ACCOUNT_ROUTE}
-								className="actions-header__icon _icon-account"
-							></NavLink>
-						</li>
+						<li className="actions-header__item account-btn">{accountButton}</li>
 						<li className="actions-header__item">
 							<button
 								type="button"

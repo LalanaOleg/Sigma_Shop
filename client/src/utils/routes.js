@@ -12,7 +12,8 @@ import {
 import {
 	Home,
 	Account,
-	Auth,
+	Login,
+	Registration,
 	Product,
 	Cart,
 	Shop,
@@ -45,11 +46,11 @@ export const publicRoutes = [
 	},
 	{
 		path: LOGIN_ROUTE,
-		Component: Auth,
+		Component: Login,
 	},
 	{
 		path: REGISTRATION_ROUTE,
-		Component: Auth,
+		Component: Registration,
 	},
 	{
 		path: PRODUCT_ROUTE + '/:id',
