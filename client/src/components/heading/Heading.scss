@@ -8,14 +8,7 @@
 	justify-content: center;
 	flex-direction: column;
 	@include adaptiveValue('min-height', 315, 180);
-	margin-top: toRem(60);
-
-	@media (min-width: $mobile) {
-		margin-top: toRem(80);
-	}
-	@media (min-width: $tablet) {
-		margin-top: toRem(100);
-	}
+	margin-top: toRem(5);
 
 	// .heading__container
 	&__container {

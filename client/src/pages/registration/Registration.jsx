@@ -1,8 +1,10 @@
-import React, { useContext, useState } from 'react';
-import Container from '../../components/container/Container';
 import { observer } from 'mobx-react';
+import React, { useContext, useState } from 'react';
+import { redirect } from 'react-router-dom';
+import Container from '../../components/container/Container';
 import { UserAPI } from '../../http/userAPI';
 import { Context } from '../../index';
+import { ACCOUNT_ROUTE } from '../../utils/paths';
 import './Registration.scss';
 
 const Registration = observer(() => {
@@ -16,6 +18,8 @@ const Registration = observer(() => {
 		e.preventDefault();
 		console.log('Sigh In');
 		user.setIsAuth(true);
+
+		redirect(ACCOUNT_ROUTE);
 		// try {
 		// 	e.preventDefault();
 		// 	const data = await UserAPI.registration(userName, email, password);

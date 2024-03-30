@@ -14,9 +14,10 @@ import {
 	getScrollBarSize,
 } from '../../utils/functions.js';
 import { Context } from '../../index.js';
+import { observer } from 'mobx-react';
 import './Header.scss';
 
-const Header = () => {
+const Header = observer(() => {
 	const [isMenuActive, setIsMenuActive] = useState(false);
 	const location = useLocation();
 	const { user } = useContext(Context);
@@ -131,6 +132,6 @@ const Header = () => {
 			</Container>
 		</header>
 	);
-};
+});
 
 export default Header;

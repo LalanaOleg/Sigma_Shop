@@ -1,9 +1,12 @@
-import React, { useContext, useState } from 'react';
-import Container from '../../components/container/Container';
 import { observer } from 'mobx-react';
+import React, { useContext, useState } from 'react';
+import { redirect } from 'react-router-dom';
+import Container from '../../components/container/Container';
 import { UserAPI } from '../../http/userAPI';
 import { Context } from '../../index';
+import { ACCOUNT_ROUTE } from '../../utils/paths';
 import './Login.scss';
+import Button from '../../components/UI/button/Button';
 
 const Login = observer(() => {
 	const { user } = useContext(Context);
@@ -15,6 +18,8 @@ const Login = observer(() => {
 		e.preventDefault();
 		console.log('Sigh In');
 		user.setIsAuth(true);
+
+		redirect(ACCOUNT_ROUTE);
 		// try {
 		// 	const data = await UserAPI.login(email, password);
 		// 	console.log(data);
@@ -52,9 +57,7 @@ const Login = observer(() => {
 							required
 						/>
 					</section>
-					<button type="submit" id="sign-in">
-						Sign in
-					</button>
+					<Button type="submit" id="sign-in">Sign in</Button>
 				</form>
 			</Container>
 		</main>
