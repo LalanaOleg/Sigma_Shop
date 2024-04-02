@@ -2,13 +2,16 @@ import { makeAutoObservable } from 'mobx';
 
 export class ProductStore {
 	constructor() {
+		/** @type {Array.<IProduct>}*/
 		this._products = [];
-		this._page = 1;
+		this._page = 0;
+		this._totalPage = 0;
 		this._totalCount = 0;
-		this._limit = 4;
+		this._limit = 3;
 		makeAutoObservable(this);
 	}
 
+	/** @param {Array.<IProduct>} products*/
 	setProducts(products) {
 		this._products = products;
 	}
@@ -18,12 +21,19 @@ export class ProductStore {
 	setLimit(limit) {
 		this._limit = limit;
 	}
-	setTotalCount(count) {
-		this._totalCount = count;
+	setTotalPage(totalPage) {
+		this._totalPage = totalPage;
+	}
+	setTotalCount(totalCount) {
+		this._totalCount = totalCount;
 	}
 
+	/** @return {Array.<IProduct>}*/
 	get products() {
 		return this._products;
+	}
+	get totalPage() {
+		return this._totalPage;
 	}
 	get totalCount() {
 		return this._totalCount;

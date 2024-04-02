@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect,useState } from 'react';
 import Heading from '../../components/heading/Heading.jsx';
 import ShopFilters from '../../components/shopFilters/ShopFilter.jsx';
 import GridContainer from '../../components/gridContainer/GridContainer.jsx';
@@ -13,8 +13,10 @@ function Shop() {
 	const { products } = useContext(Context);
 
 	useEffect(() => {
-		ProductsAPI.fetchProducts(1, 2).then((res) => {
-			products.setProducts(res.data.products);
+		ProductsAPI.fetchProducts(products.page, products.limit).then((data) => {
+			products.setProducts(data.content);
+			products.setTotalPage(data.totalPages);
+			products.setTotalCount(data.totalElements);
 		});
 	}, []);
 

@@ -1,10 +1,10 @@
 import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.scss';
 import App from './App';
-import { UserStore } from './stores/UserStore';
-import { ProductStore } from './stores/ProductStore';
+import './index.scss';
 import { CartStore } from './stores/CartStore';
+import { ProductStore } from './stores/ProductStore';
+import { UserStore } from './stores/UserStore';
 
 export const Context = createContext(null);
 
