@@ -1,34 +1,39 @@
 @import '../../../utils/common.scss';
 
 .btn {
-   font-weight: 600;
-   line-height: 150%;
-   color: #fff;
-   background-color: $goldColor;
-   padding: toRem(12) toRem(36);
-   transition: all 0.3s;
+	font-weight: 600;
+	line-height: 150%;
+	color: #000;
+	background-color: transparent;
+	padding: em(12) em(36);
+	border: 1px solid #000;
+	border-radius: em(15);
+	transition: all 0.3s;
 
-   @media (any-hover: hover) {
-      &:hover {
-         color: #000;
-      }
-   }
+	@media (any-hover: hover) {
+		&:hover {
+			color: #fff;
+			background-color: $goldColor;
+			border-color: $goldColor;
+		}
+	}
 
-   &_white-fill {
-      color: $goldColor;
-      background-color: #fff;
-   }
+	&.small {
+		padding: em(6) em(25);
+		border-radius: em(50);
+	}
 
-   &_border {
-      background-color: transparent;
-      color: $goldColor;
-      border: toRem(1) solid $goldColor;
+	&.straight {
+		border-radius: 0;
+	}
 
-      @media (any-hover: hover){
-         &:hover{
-            color: #000;
-            border: toRem(1) solid #000;
-         }
-      }
-   }
+	&.fill {
+		color: $goldColor;
+		border-color: $goldColor;
+		@media (any-hover: hover) {
+			&:hover {
+				color: #fff;
+			}
+		}
+	}
 }
