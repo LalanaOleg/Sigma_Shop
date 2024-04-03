@@ -8,6 +8,7 @@ import Features from '../../components/features/Features.jsx';
 import { Context } from '../../index.js';
 import { observer } from 'mobx-react';
 import { ProductsAPI } from '../../http/productsAPI.js';
+import Paggination from '../../components/paggination/Paggination.jsx';
 
 function Shop() {
 	const { products } = useContext(Context);
@@ -25,6 +26,7 @@ function Shop() {
 			<Heading title="Shop" />
 			<ShopFilters />
 			<GridContainer items={products.products} renderItem={ProductElement} />
+			<Paggination />
 			<Features />
 		</main>
 	);
