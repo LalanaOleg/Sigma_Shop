@@ -1,0 +1,97 @@
+@import '../../utils/common.scss';
+
+.product {
+	&__loader-container {
+		display: flex;
+		justify-content: center;
+		margin: toRem(50) 0;
+	}
+	&__loader {
+		font-size: 100px;
+		border-color: $mainColor;
+	}
+	&__navigation {
+		background-color: $lightSandColor;
+		@include adaptiveValue(padding-left, 100, 20);
+		@include adaptiveValue(padding-top, 38, 10);
+		@include adaptiveValue(padding-bottom, 38, 10);
+	}
+	&__navigation-links {
+	}
+}
+
+.product-main {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-areas: 'about' 'collage' 'additionals';
+	@media (min-width: $mobile) {
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas:
+			'collage about'
+			'a additionals';
+	}
+
+	&__collage {
+		grid-area: collage;
+	}
+
+	// .product-main__about
+
+	&__about {
+		grid-area: about;
+	}
+
+	// .product-main__additionals
+
+	&__additionals {
+		grid-area: additionals;
+	}
+}
+
+.product-collage {
+	&__main-item {
+	}
+}
+
+.product-about {
+	// .product-about__name
+
+	&__name {
+	}
+
+	// .product-about__price
+
+	&__price {
+	}
+
+	// .product-about__review
+
+	&__review {
+	}
+
+	// .product-about__description
+
+	&__description {
+	}
+
+	// .product-about__colors
+
+	&__colors {
+	}
+
+	// .product-about__interaction
+
+	&__interaction {
+	}
+
+	// .product-about__button
+
+	&__button {
+	}
+}
+.product-colors {
+}
+.a {
+}
+.product-additionals {
+}

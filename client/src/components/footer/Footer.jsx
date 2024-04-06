@@ -4,7 +4,6 @@ import './Footer.scss';
 import { ACCOUNT_ROUTE, HOME_ROUTE, SHOP_ROUTE } from '../../utils/paths.js';
 import { NavLink, useLocation } from 'react-router-dom';
 import SelectList from '../UI/selectList/SelectList.jsx';
-
 const Footer = () => {
 	const listLinks = [
 		{ title: 'Home', href: HOME_ROUTE },
@@ -12,6 +11,7 @@ const Footer = () => {
 		{ title: 'About', href: HOME_ROUTE },
 		{ title: 'Contact', href: HOME_ROUTE },
 	];
+	
 	const listHelp = [
 		{ title: 'Payment Options', href: HOME_ROUTE },
 		{ title: 'Returns', href: SHOP_ROUTE },
