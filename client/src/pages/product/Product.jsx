@@ -66,11 +66,17 @@ const Product = () => {
 				</div>
 
 				<div className="product-main__about product-about">
-					<h1 className="product-about__name"></h1>
-					<h2 className="product-about__price"></h2>
-					<div className="product-about__review">★★★★☆</div>
-					<h3 className="product-about__description"></h3>
-					<div className="product-about__colors product-colors"></div>
+					<h1 className="product-about__name">{product.productName}</h1>
+					<h2 className="product-about__price">{product.productPrice}$</h2>
+					<div className="product-about__review">
+						
+						<span className="product-about__review-count">{product.productReviews.length} Cursomer Review</span>
+					</div>
+					<h3 className="product-about__description">{product.productDescription}</h3>
+					<div className="product-about__colors product-colors">
+						<h4>Color</h4>
+						
+					</div>
 
 					<div className="product-about__interaction">
 						<Counter count={count} setCount={setCount} />
