@@ -26,7 +26,7 @@ function Shop() {
 			<Heading title="Shop" />
 			<ShopFilters />
 			<GridContainer items={products.products} renderItem={ProductElement} />
-			<Paggination />
+			{/* <Paggination /> */}
 			<Features />
 		</main>
 	);

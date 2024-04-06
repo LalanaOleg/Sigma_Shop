@@ -5,8 +5,12 @@ import './index.scss';
 import { CartStore } from './stores/CartStore';
 import { ProductStore } from './stores/ProductStore';
 import { UserStore } from './stores/UserStore';
+import { addTouchClass } from './utils/functions';
 
 export const Context = createContext(null);
+
+// add 'touch' class to html element if using a mobile
+addTouchClass();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
