@@ -7,10 +7,18 @@
 		width: toRem(30);
 		height: toRem(30);
 		border: 1px solid $lightGreyColor;
+		position: relative;
 
-		&.active {
+		&.active::after {
+			content: "";
+			display: block;
+			position: absolute;
+			top: -4px;
+			left: -4px;
+			width: calc(100% + 8px);
+			height: calc(100% + 8px);
 			border: 2px solid $goldColor;
-			box-shadow: 0 0 4px $goldColor;
+			border-radius: 50%;
 		}
 			
 	}
