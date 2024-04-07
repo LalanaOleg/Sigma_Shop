@@ -18,6 +18,7 @@ import facebookURL from '../../assets/additional icons/facebook.svg';
 import twitterURL from '../../assets/additional icons/twitter.svg';
 import linkedinURL from '../../assets/additional icons/linkedin.svg';
 import Colors from '../../components/UI/colors/Colors.jsx';
+
 const Product = () => {
 	/**
 	 * @type {[IFullProduct, React.Dispatch<IFullProduct>]} state
@@ -62,6 +63,7 @@ const Product = () => {
 			</main>
 		);
 	}
+
 	return (
 		<main>
 			<div className="product__navigation">
@@ -73,15 +75,8 @@ const Product = () => {
 			<Container>
 				<div className="product-main">
 					<div className="product-main__collage product-collage">
-						<div className="product-collage__main-item">
-							<img src="@img" alt="" />
+						<div>
 						</div>
-
-						<ul>
-							<li>
-								<div></div>
-							</li>
-						</ul>
 					</div>
 
 					<h1 className="product-main__name">{product.productName}</h1>
@@ -109,9 +104,13 @@ const Product = () => {
 						</div>
 
 						<div className="product-about__interactions">
-							<Counter className="product-about__counter" count={count} setCount={setCount} />
+							<Counter
+								className="product-about__counter"
+								count={count}
+								setCount={setCount}
+							/>
 							<Button
-								className="a product-about__button"
+								className="product-about__button"
 								variant="rounded"
 								fill={false}
 								size="big"

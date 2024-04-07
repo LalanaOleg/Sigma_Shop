@@ -70,7 +70,7 @@
 		font-size: toRem(42);
 	}
 	&__collage {
-		grid-area: collage;
+		display: block;
 	}
 
 	// .product-main__about
