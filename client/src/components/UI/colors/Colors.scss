@@ -1,0 +1,17 @@
+@import "../../../utils/common.scss";
+.color-list {
+	display: flex;
+	gap: em(16);
+	&__item {
+		border-radius: 50%;
+		width: toRem(30);
+		height: toRem(30);
+		border: 1px solid $lightGreyColor;
+
+		&.active {
+			border: 2px solid $goldColor;
+			box-shadow: 0 0 4px $goldColor;
+		}
+			
+	}
+}
