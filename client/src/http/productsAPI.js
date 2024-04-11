@@ -1,5 +1,4 @@
 import { $authHost, $host } from '.';
-import { testArray } from './testData';
 
 export class ProductsAPI {
 	static async fetchProducts(page = 1, limit = 5, sort = 'not') {
