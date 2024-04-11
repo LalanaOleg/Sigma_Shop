@@ -40,7 +40,24 @@ export function getScrollBarSize() {
 	return window.innerWidth - document.querySelector('.wrapper').offsetWidth;
 }
 export let isMobile = { Android: function () { return navigator.userAgent.match(/Android/i); }, BlackBerry: function () { return navigator.userAgent.match(/BlackBerry/i); }, iOS: function () { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, Opera: function () { return navigator.userAgent.match(/Opera Mini/i); }, Windows: function () { return navigator.userAgent.match(/IEMobile/i); }, any: function () { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); } };
+export const isTouch = isMobile.any() ? true : false;
 export function addTouchClass() {
 	// Додавання класу _touch для HTML, якщо браузер мобільний
-	if (isMobile.any()) document.documentElement.classList.add('touch');
+	if (isTouch) document.documentElement.classList.add('touch');
+}
+
+
+export function getStringPrice(startPrice, currency="$") {
+	startPrice = startPrice.toFixed(2);
+	let res = startPrice.slice(-3);
+		for (let i = startPrice.length - 4; i >= 0; i -= 3) {
+			if (i < 3) {
+				res = startPrice.slice(0, i + 1) + res;
+				break;
+			}
+
+			res = ',' + startPrice.slice(i - 2, i + 1) + res;
+		}
+		if (startPrice.length < 3) res = '0' + res;
+		return currency + " " + res;
 }

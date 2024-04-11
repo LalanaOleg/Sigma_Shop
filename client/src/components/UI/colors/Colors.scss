@@ -4,8 +4,8 @@
 	gap: em(16);
 	&__item {
 		border-radius: 50%;
-		width: toRem(30);
-		height: toRem(30);
+		width: em(30);
+		height: em(30);
 		border: 1px solid $lightGreyColor;
 		position: relative;
 
