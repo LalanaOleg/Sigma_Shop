@@ -7,6 +7,7 @@ import { Context } from '../../index';
 import { ACCOUNT_ROUTE } from '../../utils/paths';
 import './Login.scss';
 import Button from '../../components/UI/button/Button';
+import Input from '../../components/UI/input/Input';
 
 const Login = observer(() => {
 	const { user } = useContext(Context);
@@ -35,11 +36,11 @@ const Login = observer(() => {
 				<form method="POST" onSubmit={signIn}>
 					<h1>Sign in</h1>
 					<section>
-						<label htmlFor="email">Email</label>
-						<input
+						<Input
 							id="email"
 							name="email"
 							type="email"
+							label="Email"
 							onChange={(e) => setEmail(e.target.value)}
 							autoComplete="username"
 							required
@@ -47,8 +48,8 @@ const Login = observer(() => {
 						/>
 					</section>
 					<section>
-						<label htmlFor="password">Password</label>
-						<input
+						<Input
+							label="Password"
 							id="password"
 							name="password"
 							type="password"
@@ -57,7 +58,9 @@ const Login = observer(() => {
 							required
 						/>
 					</section>
-					<Button type="submit" id="sign-in">Sign in</Button>
+					<Button type="submit" id="sign-in">
+						Sign in
+					</Button>
 				</form>
 			</Container>
 		</main>
