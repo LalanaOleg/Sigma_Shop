@@ -32,7 +32,7 @@ const ShopFilter = observer(() => {
 						</div>
 						<div className="shop-filter__info">
 							<div className="shop-filter__text">
-								{`Showing 1-16 of ${products.totalCount} results`}
+								{`Showing ${products.limit * products.page + 1}-${Math.min(products.limit * (products.page + 1), products.totalCount)} of ${products.totalCount} results`}
 							</div>
 						</div>
 					</div>
@@ -43,7 +43,7 @@ const ShopFilter = observer(() => {
 						<SelectWithoutDropDown
 							className="shop-filter__show-filter"
 							options={options}
-							defaultValue={16}
+							defaultValue={options[1]}
 						/>
 					</div>
 					<div className="shop-filter__sort">

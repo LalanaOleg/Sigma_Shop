@@ -3,11 +3,12 @@ import { makeAutoObservable } from 'mobx';
 export class ProductStore {
 	constructor() {
 		/** @type {Array.<IProduct>}*/
-		this._products = [];
 		this._page = 0;
 		this._totalPage = 0;
 		this._totalCount = 0;
-		this._limit = 3;
+		this._limit = 2;
+		// fill initial array to show skeleton loader in shop
+		this._products = new Array(this._limit);
 		makeAutoObservable(this);
 	}
 

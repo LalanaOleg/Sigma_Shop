@@ -4,7 +4,7 @@ import './Pagination.scss';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 const Pagination = ({
-	onPageChange = () => {},
+	onPageChange = (page) => {},
 	pageCount = 10,
 	initialPage = 0,
 	pageRange = 2,
@@ -14,7 +14,11 @@ const Pagination = ({
 	}, [pageCount]);
 
 	const [activePage, setActivePage] = useState(initialPage);
-	const isMobileSize = useMediaQuery('(min-width: 36.25em)');
+	const isMobileSize = !useMediaQuery('(min-width: 36.25em)');
+
+	if (pageCount === 0) {
+		return <Container className="pagination" />;
+	}
 
 	const handleClick = (page) => {
 		if (!(page === activePage)) {

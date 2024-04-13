@@ -9,12 +9,12 @@ import { Context } from '../../index.js';
 import { observer } from 'mobx-react';
 import { ProductsAPI } from '../../http/productsAPI.js';
 import Pagination from '../../components/pagination/Pagination.jsx';
-import Loader from '../../components/UI/loader/Loader.jsx';
 import { useFetching } from '../../hooks/useFetching.jsx';
-import Container from '../../components/container/Container.jsx';
 
 function Shop() {
 	const { products } = useContext(Context);
+
+	//TODO: Race condition - if user change quickly pages, cancel request from the previous request
 
 	const [fetchProducts, isLoading, error] = useFetching(
 		async (page, limit) => {
@@ -26,32 +26,36 @@ function Shop() {
 						products.setTotalCount(data.totalElements);
 						resolve();
 					});
-				}, 1000);
+				}, 3000);
 			});
-		}
+		},
+		true
 	);
 
+	const onPageChange = (page) => {
+		products.setPage(page);
+		fetchProducts(page, products.limit);
+	};
+
 	useEffect(() => {
-		fetchProducts();
+		fetchProducts(products.page, products.limit);
 	}, []);
 
 	return (
 		<main className="shop">
-			<Heading title="Shop" />
+			<Heading key="heading" title="Shop" />
 			<ShopFilters />
-			{isLoading ?
-				<Container>
-					<Loader />
-				</Container>
-			:	<>
-					<GridContainer
-						items={products.products}
-						renderItem={ProductElement}
-					/>
-					<Pagination />
-				</>
-			}
-			<Features />
+			<GridContainer
+				key="shop-items"
+				items={products.products}
+				renderItem={isLoading ? () => ProductElement() : ProductElement}
+			/>
+			<Pagination
+				key="pagination"
+				onPageChange={onPageChange}
+				pageCount={products.totalPage}
+			/>
+			<Features key="features" />
 		</main>
 	);
 }

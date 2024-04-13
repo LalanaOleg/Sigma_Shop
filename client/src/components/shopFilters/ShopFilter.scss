@@ -66,6 +66,7 @@
 	&__show {
 		display: flex;
 		align-items: center;
+		justify-content: center;
 		gap: toRem(10);
 	}
 
@@ -73,7 +74,6 @@
 	&__show-filter {
 		flex: 0 0 em(50);
 		width: em(50);
-		height: em(50);
 	}
 
 	// .shop-filter__sort
@@ -85,6 +85,7 @@
 
 	// .shop-filter__sort-filter
 	&__sort-filter {
-		height: em(50);
+		flex: 0 0 em(70);
+		width: em(70);
 	}
 }
