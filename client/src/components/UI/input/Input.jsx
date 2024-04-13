@@ -1,18 +1,17 @@
 import React from 'react';
 import './Input.scss';
 
-const Input = ({ label, className, name, ...props }) => {
-   const nameOfInput = name ?? className ?? label;
+const Input = ({ label, className, id, ...props }) => {
 	return (
 		<div className={'input-wrapper ' + (className ?? '')}>
 			{label && (
-				<label className="input-wrapper__label" htmlFor={nameOfInput}>
+				<label className="input-wrapper__label" htmlFor={id}>
 					{label}
 				</label>
 			)}
 			<input
 				className="input-wrapper__input"
-				name={nameOfInput}
+				id={id}
 				{...props}
 			/>
 		</div>
