@@ -3,14 +3,14 @@
 	border-radius: 10px;
 	border: 1px solid black;
 	display: inline-grid;
-	grid-template-columns: 1fr minmax(em(72), auto) 1fr;
+	grid-template-columns: 1fr em(72) 1fr;
 	overflow: hidden;
 
-	// .counter__button
-	&__content {
-		display: flex;
-		justify-content: center;
-		align-items: center;
+	&__value {
+		text-align: center;
+		&:focus {
+			outline: none;
+		}
 	}
 	&__button {
 		display: block;
