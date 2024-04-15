@@ -11,9 +11,13 @@ export default function Counter({ count, setCount, className }) {
 		if (count <= 1) return;
 		setCount(count - 1);
 	}
+	function unfocusCheck(e) {
+		if (e.target.value === '') setCount(1);
+	}
 	function getValidValue(e) {
 		const res = parseInt(e.target.value);
-		if (isNaN(res) || res < 1) return 1;
+		if (isNaN(res)) return '';
+		if (res < 1) return 1;
 		if (res > maxValue) return maxValue;
 		return res;
 	}
@@ -29,7 +33,8 @@ export default function Counter({ count, setCount, className }) {
 				className="counter__value"
 				value={count}
 				onChange={(e) => setCount(getValidValue(e))}
-				onFocus={(e)=>e.target.select()}
+				onBlur={(e) => unfocusCheck(e)}
+				onFocus={(e) => e.target.select()}
 			/>
 			<button
 				onClick={plus}
