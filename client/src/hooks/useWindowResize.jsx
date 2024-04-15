@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 export default function useWidnowResize(breakPoints) {
 	const [breakPointIndex, setBreakPointIndex] = useState(0);
 	useEffect(() => {

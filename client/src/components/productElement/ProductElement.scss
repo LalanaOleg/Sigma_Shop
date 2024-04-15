@@ -5,13 +5,35 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
+
+	&.skeleton {
+		pointer-events: none;
+		opacity: 0.6;
+	}
+
 	// .item-product__image-ibg
 	&__image-ibg {
 		display: block;
+		position: relative;
 		padding-bottom: percent(300, 285);
 		overflow: hidden;
 		img {
 			transition: transform 0.3s;
+		}
+
+		.skeleton & {
+			@extend %skeleton-animation;
+
+			background-color: $greyColor;
+			font-family: icons;
+			&:before {
+				content: '\e90e';
+				position: absolute;
+				font-size: toRem(40);
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
 		}
 
 		@media (any-hover: hover) {
@@ -27,7 +49,7 @@
 		color: $darkGreyColor;
 		font-weight: 600;
 		line-height: 1.5;
-		padding: toRem(15) toRem(15) toRem(30) toRem(15);
+		padding: toRem(15) toRem(15) toRem(15) toRem(15);
 
 		flex: 1 1 auto;
 		display: flex;
@@ -38,12 +60,24 @@
 	&__name {
 		font-size: toRem(24);
 		@extend %linkHover;
+		.skeleton & {
+			@extend %skeleton-animation;
+			height: em(36,24);
+			width: em(190, 24);
+			background-color: $greyColor;
+		}
 	}
 	// .item-product__category
 	&__category {
 		font-weight: 500;
 		color: $lightGreyColor;
 		@extend %linkHover;
+		.skeleton & {
+			@extend %skeleton-animation;
+			height: em(24);
+			width: em(150);
+			background-color: $greyColor;
+		}
 	}
 	// .item-product__price
 	&__price {
@@ -51,6 +85,13 @@
 		gap: toRem(5) toRem(15);
 		align-items: center;
 		flex-wrap: wrap;
+		transition: all 0.3s;
+		.skeleton & {
+			@extend %skeleton-animation;
+			height: em(30);
+			width: em(120);
+			background-color: $greyColor;
+		}
 	}
 	// .item-product__new-price
 	&__new-price {
@@ -68,7 +109,6 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		margin-top: toRem(-15);
 		padding: toRem(0) toRem(15) toRem(15) toRem(15);
 	}
 	// .item-product__actions

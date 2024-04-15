@@ -5,7 +5,7 @@ export const useMediaQuery = (query, callback = null) => {
 
 	const handleChange = (e) => {
 		setMatches(e.matches);
-		if (callback) { 
+		if (callback && e.matches) { 
 			callback(e);
 		}
 	};
@@ -22,5 +22,5 @@ export const useMediaQuery = (query, callback = null) => {
 		};
 	}, []);
 
-	return !matches;
+	return matches;
 };

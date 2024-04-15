@@ -5,7 +5,11 @@ import Container from '../../components/container/Container';
 import { UserAPI } from '../../http/userAPI';
 import { Context } from '../../index';
 import { ACCOUNT_ROUTE } from '../../utils/paths';
+import Button from '../../components/UI/button/Button';
+import Input from '../../components/UI/input/Input';
 import './Registration.scss';
+import PasswordInput from '../../components/UI/passwordInput/PasswordInput';
+import Heading from '../../components/heading/Heading';
 
 const Registration = observer(() => {
 	const { user } = useContext(Context);
@@ -31,26 +35,27 @@ const Registration = observer(() => {
 
 	return (
 		<main>
+			<Heading title='Registration'/>
 			<Container className="registration">
 				<form method="POST" onSubmit={signUp}>
-					<h1>Sign up</h1>
-					<section>
-						<label htmlFor="name">User Name</label>
-						<input
+					<h1 className="registration__form-title">Sign up</h1>
+					<section className="registration__field">
+						<Input
 							id="name"
 							name="name"
 							autoComplete="name"
+							label="User Name"
 							onChange={(e) => {
 								setUserName(e.target.value);
 							}}
 							required
 						/>
 					</section>
-					<section>
-						<label htmlFor="email">Email</label>
-						<input
+					<section className="registration__field">
+						<Input
 							id="email"
 							name="email"
+							label="Email"
 							onChange={(e) => {
 								setEmail(e.target.value);
 							}}
@@ -59,32 +64,27 @@ const Registration = observer(() => {
 							required
 						/>
 					</section>
-					<section>
-						<label htmlFor="password">Password</label>
-						<button
-							id="toggle-password"
-							type="button"
-							aria-label="Show password as plain text. Warning: this will display your password on the screen."
-						>
-							Show password
-						</button>
-						<input
+					<section className="registration__field">
+						<PasswordInput
 							id="password"
 							name="password"
-							type="password"
-							onChange={(e) => {
-								setPassword(e.target.value);
-							}}
 							autoComplete="new-password"
 							minLength="8"
 							aria-describedby="password-constraints"
 							required
+							onChange={(e) => {
+								setPassword(e.target.value);
+							}}
 						/>
-						<div id="password-constraints">Eight or more characters.</div>
+						<div className="registration__hint" id="password-constraints">
+							Eight or more characters.
+						</div>
 					</section>
-					<button type="submit" id="sign-up">
-						Sign up
-					</button>
+					<section className="registration__button">
+						<Button className="login__button" type="submit" id="sign-up">
+							Sign up
+						</Button>
+					</section>
 				</form>
 			</Container>
 		</main>
