@@ -29,8 +29,14 @@
          font-size: toRem(24);
 		}
 
+		@media (any-hover: hover){
+			&:hover{
+				border-color: #000;
+			}
+		}
+
 		&:focus, &:focus-visible, &:focus-within {
-         border: toRem(2) solid #000;
+         border-color: $goldColor;
 			outline: none;
       }
 	}

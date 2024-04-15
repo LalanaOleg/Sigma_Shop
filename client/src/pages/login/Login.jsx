@@ -10,6 +10,7 @@ import Button from '../../components/UI/button/Button';
 import Input from '../../components/UI/input/Input';
 import Checkbox from '../../components/UI/checkbox/Checkbox';
 import Heading from '../../components/heading/Heading';
+import PasswordInput from '../../components/UI/passwordInput/PasswordInput';
 
 const Login = observer(() => {
 	const { user } = useContext(Context);
@@ -35,11 +36,11 @@ const Login = observer(() => {
 
 	return (
 		<main>
-			<Heading title='Login'/>
+			<Heading title="Login" />
 			<Container className="login">
 				<form method="POST" onSubmit={signIn}>
-					<h1 className='login__form-title'>Sign in</h1>
-					<section className='login__field'>
+					<h1 className="login__form-title">Sign in</h1>
+					<section className="login__field">
 						<Input
 							id="email"
 							name="email"
@@ -48,11 +49,10 @@ const Login = observer(() => {
 							onChange={(e) => setEmail(e.target.value)}
 							autoComplete="username"
 							required
-							autoFocus
 						/>
 					</section>
-					<section className='login__field'>
-						<Input
+					<section className="login__field">
+						<PasswordInput
 							label="Password"
 							id="password"
 							name="password"
@@ -62,7 +62,7 @@ const Login = observer(() => {
 							required
 						/>
 					</section>
-					<section className='login__checkbox'>
+					<section className="login__checkbox">
 						<Checkbox
 							checked={rememberMeChecked}
 							onChange={() => setRememberMeChecked(!rememberMeChecked)}
@@ -71,8 +71,8 @@ const Login = observer(() => {
 							label="Remember me"
 						/>
 					</section>
-					<section className='login__buttons'>
-						<Button className='login__button' type="submit" id="sign-in">
+					<section className="login__buttons">
+						<Button className="login__button" type="submit" id="sign-in">
 							Sign in
 						</Button>
 					</section>

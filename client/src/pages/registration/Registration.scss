@@ -20,9 +20,9 @@
 	&__form-title {
       text-align: center;
 		font-weight: 600;
-		font-size: toRem(20);
+		font-size: toRem(24);
       @media (min-width:$mobileSmall){
-         font-size: toRem(24);
+         font-size: toRem(28);
       }
       @media (min-width:$tablet){
          font-size: toRem(36);
@@ -39,7 +39,9 @@
 
    &__button {
       width: 100%;
-      max-width: toRem(200);
+		@media (min-width:$mobileSmall){
+			max-width: toRem(200);
+		}
       @media (min-width:$tablet){
          height: toRem(64);
       }

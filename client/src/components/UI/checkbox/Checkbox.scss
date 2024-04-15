@@ -2,19 +2,22 @@
 
 .checkbox {
 	display: block;
+	position: relative;
 	@include adaptiveValue('font-size', 16, 14);
 
 	&__input {
-		display: none;
-		cursor: pointer;
+		position: absolute;
+		width: 0;
+		height: 0;
+		opacity: 0;
 
-      &:checked {
-         + span {
-            &::before{
-               opacity: 1;
-            }
-         }
-      }
+		&:checked {
+			+ span {
+				&::before {
+					opacity: 1;
+				}
+			}
+		}
 	}
 
 	&__label {
@@ -24,6 +27,17 @@
 		align-items: center;
 		justify-content: center;
 		gap: em(20);
+		transition: color 0.3s;
+
+		@media (any-hover: hover) {
+			&:hover {
+				color: $goldColor;
+			}
+		}
+
+		&:has(.checkbox__input:focus-visible) {
+			color: $goldColor;
+		}
 
 		> span {
 			display: flex;
@@ -38,8 +52,8 @@
 			&::before {
 				content: '\f00c';
 				font-family: icons;
-            opacity: 0;
-            transition: opacity 0.3s;
+				opacity: 0;
+				transition: opacity 0.3s;
 			}
 		}
 	}
