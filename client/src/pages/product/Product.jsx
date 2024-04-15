@@ -6,7 +6,7 @@ import { ProductsAPI } from '../../http/productsAPI';
 import Breadcrumbs from '../../components/breadcrumbs/Breadcrumbs';
 import Loader from '../../components/UI/loader/Loader';
 import { useFetching } from '../../hooks/useFetching';
-import useWindowResize from '../../hooks/useWindowResize.jsx';
+import { useMediaQuery } from '../../hooks/useMediaQuery.js';
 import ProductInformation from '../../components/productInformation/ProductInformation.jsx';
 
 const Product = () => {
@@ -16,7 +16,7 @@ const Product = () => {
 
 	const [product, setProduct] = useState(undefined);
 	const { id } = useParams();
-	const windowResizeIndex = useWindowResize([767.98]);
+	const isMobileSize = !useMediaQuery('(min-width: 48rem)');
 	const [getProduct, isProductLoading, productError] = useFetching(() => {
 		ProductsAPI.fetchProduct(id).then((data) => {
 			setProduct(data);
@@ -50,7 +50,7 @@ const Product = () => {
 				<ProductInformation
 					isProductLoading={isProductLoading}
 					product={product}
-					windowResizeIndex={windowResizeIndex}
+					isMobileSize={isMobileSize}
 				></ProductInformation>
 			</Container>
 		</main>
