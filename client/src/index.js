@@ -6,6 +6,7 @@ import { CartStore } from './stores/CartStore';
 import { ProductStore } from './stores/ProductStore';
 import { UserStore } from './stores/UserStore';
 import { addTouchClass } from './utils/functions';
+import { BrowserRouter } from 'react-router-dom';
 
 export const Context = createContext(null);
 
@@ -22,7 +23,9 @@ root.render(
 				cart: new CartStore(),
 			}}
 		>
-			<App />
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
 		</Context.Provider>
 	</React.StrictMode>
 );

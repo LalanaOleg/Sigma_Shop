@@ -1,31 +1,32 @@
 import React from 'react';
 import Container from '../container/Container.jsx';
 import './Footer.scss';
-import { ACCOUNT_ROUTE, HOME_ROUTE, SHOP_ROUTE } from '../../utils/paths.js';
-import { NavLink, useLocation } from 'react-router-dom';
+import { HOME_ROUTE, SHOP_ROUTE } from '../../utils/paths.js';
+import { Link } from 'react-router-dom';
 import SelectList from '../UI/selectList/SelectList.jsx';
-const Footer = () => {
-	const listLinks = [
-		{ title: 'Home', href: HOME_ROUTE },
-		{ title: 'Shop', href: SHOP_ROUTE },
-		{ title: 'About', href: HOME_ROUTE },
-		{ title: 'Contact', href: HOME_ROUTE },
-	];
-	
-	const listHelp = [
-		{ title: 'Payment Options', href: HOME_ROUTE },
-		{ title: 'Returns', href: SHOP_ROUTE },
-		{ title: 'Privacy Policies', href: HOME_ROUTE },
-	];
 
+const listLinks = [
+	{ title: 'Home', href: HOME_ROUTE },
+	{ title: 'Shop', href: SHOP_ROUTE },
+	{ title: 'About', href: HOME_ROUTE },
+	{ title: 'Contact', href: HOME_ROUTE },
+];
+
+const listHelp = [
+	{ title: 'Payment Options', href: HOME_ROUTE },
+	{ title: 'Returns', href: SHOP_ROUTE },
+	{ title: 'Privacy Policies', href: HOME_ROUTE },
+];
+
+const Footer = () => {
 	return (
 		<footer className="footer">
 			<Container className="footer__container">
 				<div className="footer__content">
 					<div className="footer__title">
-						<NavLink to={HOME_ROUTE} className="footer__logo">
+						<Link to={HOME_ROUTE} className="footer__logo">
 							Funiro.
-						</NavLink>
+						</Link>
 						<p className="footer__location">
 							400 University Drive Suite 200 Coral Gables, FL 33134 USA
 						</p>
