@@ -8,32 +8,52 @@ export const testArray = {
 	data: {
 		products: [
 			{
-				productID: i++,
-				imageURL: first,
-				name: 'Syltherine',
+				productId: i++,
+				images: [
+					{
+						image: first,
+						name: 'name' + i,
+					},
+				],
+				productName: 'Syltherine',
 				category: 'Stylish cafe chair',
-				price: 2_500_500,
+				productPrice: 3_500,
 			},
 			{
-				productID: i++,
-				imageURL: second,
-				name: 'Leviosa',
+				productId: i++,
+				images: [
+					{
+						image: second,
+						name: 'name' + i,
+					},
+				],
+				productName: 'Leviosa',
 				category: 'Stylish cafe chair',
-				price: 2_500_000,
+				productPrice: 1_000,
 			},
 			{
-				productID: i++,
-				imageURL: third,
-				name: 'Lolito',
+				productId: i++,
+				images: [
+					{
+						image: third,
+						name: 'name' + i,
+					},
+				],
+				productName: 'Lolito',
 				category: 'Luxury big sofa',
-				price: 7_500_500,
+				productPrice: 2_500,
 			},
 			{
-				productID: i++,
-				imageURL: fouth,
-				name: 'Respira',
+				productId: i++,
+				images: [
+					{
+						image: fouth,
+						name: 'name' + i,
+					},
+				],
+				productName: 'Respira',
 				category: 'Outdoor bar table and stool',
-				price: 500_500,
+				productPrice: 7_500,
 			},
 		],
 		totalCount: i,
@@ -47,8 +67,8 @@ export const testObject = {
 			images: ['imageURL'],
 			name: 'Syltherine',
 			category: 'Stylish cafe chair',
-			sku: "sku_product",
-			price: 2_500_500,
+			sku: 'sku_product',
+			productPrice: 2_500_500,
 			colors: [{ color: '#ffffff', productID: 3 }],
 			description: 'Some description',
 			amountOfReviews: 1,

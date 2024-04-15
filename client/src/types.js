@@ -49,3 +49,11 @@
  * @property {string} productCategory - category of product.
  * @property {number} productPrice - price of product.
  */
+
+/**
+ * Type for modal handlers
+ * @typedef {Object} modalHandler
+ * @property {boolean} modalHandler.isOpen
+ * @property {() => void} modalHandler.open
+ * @property {() => void} modalHandler.close
+ */

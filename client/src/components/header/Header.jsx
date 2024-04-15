@@ -17,8 +17,14 @@ import { Context } from '../../index.js';
 import { observer } from 'mobx-react';
 import './Header.scss';
 
-const Header = observer(() => {
+/**
+ * @param {Object} props
+ * @param {(modalName) => modalHandler} props.getModalHandler
+ * @returns
+ */
+const Header = observer(({ getModalHandler }) => {
 	const [isMenuActive, setIsMenuActive] = useState(false);
+	const [addRightPadding, setAddRightPadding] = useState(false);
 	const location = useLocation();
 	const { user } = useContext(Context);
 
@@ -26,6 +32,11 @@ const Header = observer(() => {
 	useEffect(() => {
 		menuClose();
 	}, [location]);
+
+	// TODO: doesn`t work correctly on change in modals
+	useEffect(() => {
+		setAddRightPadding(document.documentElement.classList.contains('lock'));
+	}, [document.documentElement.classList.values()]);
 
 	function toggleMenu() {
 		setIsMenuActive(!isMenuActive);
@@ -69,7 +80,8 @@ const Header = observer(() => {
 				<div
 					style={{
 						// add padding right so that elements do not shake
-						paddingRight: (isMenuActive ? getScrollBarSize() : 0) + 'px',
+						paddingRight:
+							(addRightPadding ? getScrollBarSize() : 0) + 'px',
 					}}
 					className="header__menu menu"
 				>
@@ -101,7 +113,9 @@ const Header = observer(() => {
 						</ul>
 					</nav>
 					<ul className="header__actions actions-header">
-						<li className="actions-header__item account-btn">{accountButton}</li>
+						<li className="actions-header__item account-btn">
+							{accountButton}
+						</li>
 						<li className="actions-header__item">
 							<button
 								type="button"
@@ -118,6 +132,7 @@ const Header = observer(() => {
 							<button
 								type="button"
 								className="actions-header__icon _icon-cart"
+								onClick={() => getModalHandler('cartModal').open()}
 							></button>
 						</li>
 						<button
