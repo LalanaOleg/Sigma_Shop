@@ -13,14 +13,6 @@
 	&__navigation {
 		background-color: $lightSandColor;
 		@include adaptiveValue(
-			padding-left,
-			100,
-			15,
-			0,
-			$containerWidth,
-			$mobileWidth
-		);
-		@include adaptiveValue(
 			padding-top,
 			38,
 			15,

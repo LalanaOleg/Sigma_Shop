@@ -39,10 +39,12 @@ const Product = () => {
 	return (
 		<main>
 			<div className="product__navigation">
-				<Breadcrumbs
-					className={'product__navigation-links'}
-					lastCrumb={product.productName}
-				/>
+				<Container>
+					<Breadcrumbs
+						className={'product__navigation-links'}
+						lastCrumb={product.productName}
+					/>
+				</Container>
 			</div>
 			<Container>
 				<ProductInformation
@@ -50,7 +52,6 @@ const Product = () => {
 					product={product}
 					windowResizeIndex={windowResizeIndex}
 				></ProductInformation>
-				
 			</Container>
 		</main>
 	);
