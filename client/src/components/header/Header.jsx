@@ -26,7 +26,7 @@ const Header = observer(({ getModalHandler }) => {
 	const [isMenuActive, setIsMenuActive] = useState(false);
 	const [addRightPadding, setAddRightPadding] = useState(false);
 	const location = useLocation();
-	const { user } = useContext(Context);
+	const { user, cart } = useContext(Context);
 
 	// close menu on location change
 	useEffect(() => {
@@ -36,7 +36,7 @@ const Header = observer(({ getModalHandler }) => {
 	// TODO: doesn`t work correctly on change in modals
 	useEffect(() => {
 		setAddRightPadding(document.documentElement.classList.contains('lock'));
-	}, [document.documentElement.classList.values()]);
+	}, [document.documentElement.classList.toString()]);
 
 	function toggleMenu() {
 		setIsMenuActive(!isMenuActive);
@@ -133,7 +133,11 @@ const Header = observer(({ getModalHandler }) => {
 								type="button"
 								className="actions-header__icon _icon-cart"
 								onClick={() => getModalHandler('cartModal').open()}
-							></button>
+							>
+								{cart.amountOfItems > 0 && (
+									<span>{cart.amountOfItems}</span>
+								)}
+							</button>
 						</li>
 						<button
 							type="button"

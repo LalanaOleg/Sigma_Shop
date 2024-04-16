@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useContext, useLayoutEffect, useState } from 'react';
 import Container from '../../components/container/Container';
 import './Product.scss';
 import { useParams } from 'react-router-dom';
@@ -8,14 +8,20 @@ import Loader from '../../components/UI/loader/Loader';
 import { useFetching } from '../../hooks/useFetching';
 import { useMediaQuery } from '../../hooks/useMediaQuery.js';
 import ProductInformation from '../../components/productInformation/ProductInformation.jsx';
+import { observer } from 'mobx-react-lite';
+import { Context } from '../../index.js';
+import { CartStore } from '../../stores/CartStore.js';
 
-const Product = () => {
+const Product = observer(() => {
 	/**
 	 * @type {[IFullProduct, React.Dispatch<IFullProduct>]} state
 	 */
-
 	const [product, setProduct] = useState(undefined);
 	const { id } = useParams();
+	const context = useContext(Context);
+	/** @type {CartStore}  */
+	const cartStore = context.cart;
+
 	const isMobileSize = !useMediaQuery('(min-width: 48rem)');
 	const [getProduct, isProductLoading, productError] = useFetching(() => {
 		ProductsAPI.fetchProduct(id).then((data) => {
@@ -55,6 +61,6 @@ const Product = () => {
 			</Container>
 		</main>
 	);
-};
+});
 
 export default Product;
