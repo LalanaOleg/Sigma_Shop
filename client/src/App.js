@@ -12,7 +12,7 @@ import { bodyLock, bodyUnlock } from './utils/functions';
 
 const initialModalsObject = {
 	cartModal: false,
-	favoriteModal: false,
+	favoritesModal: false,
 	searchModal: false,
 };
 
