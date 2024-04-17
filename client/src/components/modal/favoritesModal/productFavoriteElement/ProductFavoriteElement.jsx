@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { PRODUCT_ROUTE } from '../../../../utils/paths';
 
 /**
- * 
  * @param {Object} props
  * @param {IProduct} props.favoriteItem
  * @param {(id: number) => {}} props.deleteFavoriteItem
