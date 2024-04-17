@@ -188,6 +188,7 @@
 			}
 		}
 	}
+	
 	// .actions-header__icon
 	&__icon {
 		font-weight: 500;
@@ -205,7 +206,7 @@
 			font-size: toRem(24);
 		}
 
-		&._icon-cart {
+		&.label-value {
 			position: relative;
 			span {
 				position: absolute;

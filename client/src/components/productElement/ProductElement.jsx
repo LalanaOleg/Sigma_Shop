@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { HOME_ROUTE, PRODUCT_ROUTE } from '../../utils/paths';
 import './ProductElement.scss';
+import { Context } from '../..';
+import { observer } from 'mobx-react';
+import { FavoriteStore } from '../../stores/FavoriteStore';
 
 /**
  * Returns the product element.
  * @param {IProduct} product an object
  */
-const ProductElement = (product) => {
+const ProductElement = observer((product) => {
+	const context = useContext(Context);
+	/** @type {FavoriteStore} */
+	const favorites = context.favorites;
+
 	if (product === undefined || product === null) {
 		return (
 			<article key={Math.random()} className="item-product skeleton">
@@ -36,6 +43,7 @@ const ProductElement = (product) => {
 						<button
 							type="button"
 							className="item-product__item _icon-heart"
+							onClick={favorites}
 						>
 							Like
 						</button>
@@ -90,6 +98,6 @@ const ProductElement = (product) => {
 			</ul> */}
 		</article>
 	);
-};
+});
 
 export default ProductElement;

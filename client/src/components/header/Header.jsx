@@ -26,7 +26,7 @@ const Header = observer(({ getModalHandler }) => {
 	const [isMenuActive, setIsMenuActive] = useState(false);
 	const [addRightPadding, setAddRightPadding] = useState(false);
 	const location = useLocation();
-	const { user, cart } = useContext(Context);
+	const { user, cart, favorites } = useContext(Context);
 
 	// close menu on location change
 	useEffect(() => {
@@ -121,14 +121,18 @@ const Header = observer(({ getModalHandler }) => {
 						<li className="actions-header__item">
 							<button
 								type="button"
-								className="actions-header__icon _icon-heart"
+								className="actions-header__icon _icon-heart label-value"
 								onClick={() => getModalHandler('favoritesModal').open()}
-							></button>
+							>
+								{favorites.amountOfItems > 0 && (
+									<span>{favorites.amountOfItems}</span>
+								)}
+							</button>
 						</li>
 						<li className="actions-header__item">
 							<button
 								type="button"
-								className="actions-header__icon _icon-cart"
+								className="actions-header__icon _icon-cart label-value"
 								onClick={() => getModalHandler('cartModal').open()}
 							>
 								{cart.amountOfItems > 0 && (
