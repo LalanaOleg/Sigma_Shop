@@ -15,7 +15,7 @@
 		@include adaptiveValue(
 			padding-top,
 			38,
-			15,
+			20,
 			0,
 			$containerWidth,
 			$mobileWidth
@@ -23,11 +23,27 @@
 		@include adaptiveValue(
 			padding-bottom,
 			38,
-			15,
+			20,
 			0,
 			$containerWidth,
 			$mobileWidth
 		);
 	}
+
+	&__tabs-container {
+		border-top: 1px solid $greyColor;
+		border-bottom: 1px solid $greyColor;
+		@include adaptiveValue(padding-top, 48, 25, 0, $containerWidth, $mobileWidth);
+		@include adaptiveValue(padding-bottom, 65, 30, 0, $containerWidth, $mobileWidth);
+	}
 }
 
+.product-tabs {
+	&__description {
+		white-space: pre-wrap;
+		color: $greyColor;
+		@include adaptiveValue(padding-left, 107, 0, 0, $containerWidth, $mobileWidth);
+		@include adaptiveValue(padding-right, 107, 0, 0, $containerWidth, $mobileWidth);
+	
+	}
+}

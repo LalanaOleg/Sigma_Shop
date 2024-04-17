@@ -13,6 +13,7 @@
 		}
 	}
 	&__button {
+		user-select: none;
 		display: block;
 		padding: em(20) 0;
 		transition:
@@ -32,10 +33,5 @@
 	&__button_plus {
 		padding-right: em(12);
 		padding-left: em(8);
-	}
-
-	// .counter__value
-
-	&__value {
 	}
 }
