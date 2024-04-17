@@ -26,11 +26,25 @@
 
 /**
  * Full info of product.
+ * @typedef {Object} ISendProduct
+ * @property {string} productName - name of product.
+ * @property {string} productCategory - category of product.
+ * @property {string} productDescription - description of description.
+ * @property {string} productFullDescription - full description of description.
+ * @property {string} productSku - category of productSku.
+ * @property {number} productPrice - price of product.
+ * @property {Array.<ImageObject>} images - array with main image of product.
+ * @property {string} productColor - string of color
+ */
+
+/**
+ * Full info of product.
  * @typedef {Object} IFullProduct
  * @property {number} productId - id of product.
  * @property {string} productName - name of product.
  * @property {string} productCategory - category of product.
- * @property {string} productDescription - category of description.
+ * @property {string} productDescription - description of description.
+ * @property {string} productFullDescription - full description of description.
  * @property {string} productSku - category of productSku.
  * @property {number} productPrice - price of product.
  * @property {number} averageRate - average rate of product.
