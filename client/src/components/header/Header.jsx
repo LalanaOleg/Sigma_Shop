@@ -75,16 +75,12 @@ const Header = observer(({ getModalHandler }) => {
 	}
 
 	return (
-		<header className="header">
+		<header
+			data-lp // to correct right padding on body lock by bodyUnlock and bodyLock functions
+			className="header"
+		>
 			<Container className="header__container">
-				<div
-					style={{
-						// add padding right so that elements do not shake
-						paddingRight:
-							(addRightPadding ? getScrollBarSize() : 0) + 'px',
-					}}
-					className="header__menu menu"
-				>
+				<div className="header__menu menu">
 					<NavLink to={HOME_ROUTE} className="header__logo">
 						Furniro
 					</NavLink>
@@ -126,6 +122,7 @@ const Header = observer(({ getModalHandler }) => {
 							<button
 								type="button"
 								className="actions-header__icon _icon-heart"
+								onClick={() => getModalHandler('favoritesModal').open()}
 							></button>
 						</li>
 						<li className="actions-header__item">

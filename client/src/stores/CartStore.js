@@ -25,6 +25,13 @@ export class CartStore {
 	}
 
 	/**
+	 * @param {number} productID id of the product to find;
+	 */
+	isProductInCart(productID) {
+		return Boolean(this._cartItems.find((item) => item.product.productId !== productID));
+	}
+
+	/**
 	 * @param {number} productID id of the product to delete;
 	 */
 	deleteCartItem(productID) {
