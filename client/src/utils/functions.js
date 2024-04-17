@@ -77,7 +77,7 @@ export function addTouchClass() {
 	if (isTouch) document.documentElement.classList.add('touch');
 }
 
-export function getStringPrice(startPrice, currency = '$') {
+export function getStringPrice(startPrice, currency = '₴') {
 	startPrice = startPrice.toFixed(2);
 	let res = startPrice.slice(-3);
 	for (let i = startPrice.length - 4; i >= 0; i -= 3) {

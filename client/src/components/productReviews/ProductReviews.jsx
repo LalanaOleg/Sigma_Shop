@@ -1,6 +1,7 @@
 import React from 'react';
 import './ProductReviews.scss';
 import ProductReview from '../productReview/ProductReview.jsx';
+
 function productReviews({ reviews, className }) {
 	const classNames = ['product-reviews', className];
 	return (
