@@ -24,7 +24,7 @@
 		.skeleton & {
 			@extend %skeleton-animation;
 
-			background-color: $greyColor;
+			background-color: #b0b0b075;
 			font-family: icons;
 			&:before {
 				content: '\e90e';
@@ -64,7 +64,7 @@
 			@extend %skeleton-animation;
 			height: em(36,24);
 			width: em(190, 24);
-			background-color: $greyColor;
+			background-color: #b0b0b075;
 		}
 	}
 	// .item-product__category
@@ -76,7 +76,7 @@
 			@extend %skeleton-animation;
 			height: em(24);
 			width: em(150);
-			background-color: $greyColor;
+			background-color: #b0b0b075;
 		}
 	}
 	// .item-product__price
@@ -90,7 +90,7 @@
 			@extend %skeleton-animation;
 			height: em(30);
 			width: em(120);
-			background-color: $greyColor;
+			background-color: #b0b0b075;
 		}
 	}
 	// .item-product__new-price
@@ -129,6 +129,13 @@
 		display: flex;
 		align-items: center;
 		gap: toRem(5);
+		transition: color 0.3s;
+
+		&._icon-heart {
+			&.active{
+				color: red;
+			}
+		}
 	}
 	// .item-product__labels
 	&__labels {

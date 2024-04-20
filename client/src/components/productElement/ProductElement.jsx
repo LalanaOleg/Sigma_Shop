@@ -1,59 +1,34 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HOME_ROUTE, PRODUCT_ROUTE } from '../../utils/paths';
 import './ProductElement.scss';
 import { Context } from '../..';
-import { observer } from 'mobx-react';
 import { FavoriteStore } from '../../stores/FavoriteStore';
 
 /**
  * Returns the product element.
- * @param {IProduct} product an object
+ * @param {Object} props an object
+ * @param {IProduct} props.product an object
  */
-const ProductElement = observer((product) => {
+const ProductElement = ({ product }) => {
 	const context = useContext(Context);
 	/** @type {FavoriteStore} */
 	const favorites = context.favorites;
 
-	if (product === undefined || product === null) {
-		return (
-			<article key={Math.random()} className="item-product skeleton">
-				<div className="item-product__image-ibg"></div>
-				<div className="item-product__content">
-					<div className="item-product__name"></div>
-					<div className="item-product__category"></div>
-					<div className="item-product__price">
-						<div className="item-product__new-price"></div>
-					</div>
-				</div>
-				<div className="item-product__panel">
-					<div className="item-product__actions">
-						<button
-							type="button"
-							className="item-product__item _icon-share"
-						>
-							Share
-						</button>
-						<button
-							type="button"
-							className="item-product__item _icon-compare"
-						>
-							Compare
-						</button>
-						<button
-							type="button"
-							className="item-product__item _icon-heart"
-							onClick={favorites}
-						>
-							Like
-						</button>
-					</div>
-				</div>
-			</article>
-		);
-	}
+	const [isInFavorites, setIsInFavorites] = useState(
+		favorites.isProductInFavorites(product.productId)
+	);
 
 	const productLink = PRODUCT_ROUTE + '/' + product.productId;
+
+	const onFavoriteBtnClick = () => {
+		if (isInFavorites) {
+			favorites.deleteFavoriteItem(product.productId);
+		} else {
+			favorites.addFavoriteItem(product);
+		}
+		setIsInFavorites(!isInFavorites);
+	};
 
 	return (
 		<article key={product.productId} className="item-product">
@@ -85,7 +60,14 @@ const ProductElement = observer((product) => {
 					>
 						Compare
 					</button>
-					<button type="button" className="item-product__item _icon-heart">
+					<button
+						type="button"
+						className={
+							'item-product__item _icon-heart ' +
+							(isInFavorites ? 'active' : '')
+						}
+						onClick={onFavoriteBtnClick}
+					>
 						Like
 					</button>
 				</div>
@@ -98,6 +80,6 @@ const ProductElement = observer((product) => {
 			</ul> */}
 		</article>
 	);
-});
+};
 
 export default ProductElement;

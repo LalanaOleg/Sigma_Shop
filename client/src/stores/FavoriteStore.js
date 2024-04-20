@@ -4,7 +4,7 @@ import { testArray } from '../utils/testData';
 export class FavoriteStore {
 	constructor() {
 		/** @type {Array.<IProduct>} */
-		this._favoritesItems = testArray.data.products;
+		this._favoritesItems = [] //testArray.data.products;
 		makeAutoObservable(this);
 	}
 
@@ -17,18 +17,20 @@ export class FavoriteStore {
 	}
 
 	/**
-	 * @param {number} productID id of the product to find;
+	 * @param {number} productId id of the product to find;
 	 */
-	isProductInFavorites(productID) {
-		return Boolean(this._favoritesItems.find((item) => item.productId !== productID));
+	isProductInFavorites(productId) {
+		return Boolean(
+			this._favoritesItems.find((item) => item.productId === productId)
+		);
 	}
 
 	/**
-	 * @param {number} productID id of the product to delete;
+	 * @param {number} productId id of the product to delete;
 	 */
-	deleteFavoriteItem(productID) {
+	deleteFavoriteItem(productId) {
 		this._favoritesItems = this._favoritesItems.filter(
-			(item) => item.productId !== productID
+			(item) => item.productId !== productId
 		);
 	}
 
@@ -36,6 +38,7 @@ export class FavoriteStore {
 	 * @param {IProduct} product
 	 */
 	addFavoriteItem(favoriteItem) {
-		this._favoritesItems.push(favoriteItem);
+		// if (!this.isProductInFavorites(favoriteItem.productId))
+			this._favoritesItems.push(favoriteItem);
 	}
 }

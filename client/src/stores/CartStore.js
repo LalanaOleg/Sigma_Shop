@@ -4,9 +4,10 @@ import { testArray } from '../utils/testData';
 export class CartStore {
 	constructor() {
 		/** @type {Array.<CartItem>} */
-		this._cartItems = testArray.data.products.map((product) => {
-			return { product: product, amount: 2 };
-		});
+		this._cartItems = []
+		// this._cartItems = testArray.data.products.map((product) => {
+		// 	return { product: product, amount: 2 };
+		// });
 		makeAutoObservable(this);
 	}
 
