@@ -95,11 +95,11 @@ const ProductInformation = observer(
 							spaceBetween={0}
 						/>
 					</div>
-				:	<div className="product-main__slider big-screen-slider">
-						<div
-							onClick={(e) => makeSlideMain(e.target)}
-							className="big-screen-slider__container"
-						>
+				:	<div
+						onClick={(e) => makeSlideMain(e.target)}
+						className="product-main__slider big-screen-slider"
+					>
+						<div className="big-screen-slider__container">
 							<Slider
 								slides={slides}
 								className="big-screen-slider__content"

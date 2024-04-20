@@ -1,11 +1,8 @@
 @import '../../../utils/common.scss';
 
-.input-wrapper {
+.color-picker {
 	display: flex;
 	flex-direction: column;
-	& .error {
-		border: 1px solid red;
-	}
 
 	&__label {
 		font-weight: 500;
@@ -17,32 +14,24 @@
 			margin-bottom: toRem(20);
 		}
 	}
-
-	&__input {
-		border: toRem(1) solid $greyColor;
-		border-radius: em(10);
-		padding: em(12) em(10);
+	&__content {
+		display: flex;
+		align-items: flex-end;
+		gap: em(12);
+	}
+	&__output {
+		font-size: em(24);
+		width: 7em;
+	}
+	&__color {
+		width: em(52);
+		height: em(52);
 		font-size: toRem(18);
-		transition: border-color 0.3s;
-
 		@media (min-width: $mobileSmall) {
 			font-size: toRem(20);
 		}
 		@media (min-width: $tablet) {
 			font-size: toRem(24);
-		}
-
-		@media (any-hover: hover) {
-			&:hover {
-				border-color: #000;
-			}
-		}
-
-		&:focus,
-		&:focus-visible,
-		&:focus-within {
-			border-color: $goldColor;
-			outline: none;
 		}
 	}
 }

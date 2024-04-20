@@ -1,7 +1,7 @@
 import React from 'react';
 import './Input.scss';
 
-const Input = ({ label, className, id, ...props }) => {
+const Input = ({ label, className, id, ...props }, ref) => {
 	return (
 		<div className={'input-wrapper ' + (className ?? '')}>
 			{label && (
@@ -10,6 +10,7 @@ const Input = ({ label, className, id, ...props }) => {
 				</label>
 			)}
 			<input
+				ref={ref}
 				className="input-wrapper__input"
 				id={id}
 				{...props}
@@ -18,4 +19,4 @@ const Input = ({ label, className, id, ...props }) => {
 	);
 };
 
-export default Input;
+export default React.forwardRef(Input);
