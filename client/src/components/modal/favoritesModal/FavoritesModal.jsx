@@ -22,8 +22,6 @@ const FavoritesModal = observer(({ modalHandler }) => {
 
 	const favoritesItems = favorites.favoritesItems;
 
-	console.log(favoritesItems)
-
 	const deleteItem = (productId) => {
 		favorites.deleteFavoriteItem(productId);
 	};
