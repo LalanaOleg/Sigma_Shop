@@ -3,18 +3,28 @@
 .input-wrapper {
 	display: flex;
 	flex-direction: column;
-	& .error {
-		border: 1px solid red;
-	}
 
 	&__label {
 		font-weight: 500;
 		font-size: toRem(16);
 		color: #000;
-		margin-bottom: toRem(10);
+		padding-bottom: toRem(10);
+		gap: 0 toRem(10);
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
 
 		@media (min-width: $mobile) {
-			margin-bottom: toRem(20);
+			padding-bottom: toRem(20);
+		}
+	}
+
+	&__label-text {
+	}
+
+	&__error-message {
+		.error & {
+			color: red;
 		}
 	}
 
@@ -36,6 +46,10 @@
 			&:hover {
 				border-color: #000;
 			}
+		}
+
+		.error & {
+			border-color: red;
 		}
 
 		&:focus,
