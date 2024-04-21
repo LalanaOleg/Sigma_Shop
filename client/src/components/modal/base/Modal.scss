@@ -93,10 +93,10 @@ body:has(.popup_show)::after {
 	}
 	// .popup__close
 	&__close {
-		flex: 0 0 em(30);
-		width: em(30);
-		height: em(30);
-		font-size: em(20);
+		font-size: em(26);
+		flex: 0 0 em(30, 26);
+		width: em(30, 26);
+		height: em(30, 26);
 
 		display: flex;
 		align-items: center;

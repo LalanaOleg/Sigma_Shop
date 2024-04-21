@@ -9,11 +9,16 @@ import Footer from './components/footer/Footer';
 import Modals from './components/modal/Modals';
 import { useLocationChange } from './hooks/useLocationChange';
 import { bodyLock, bodyUnlock } from './utils/functions';
+import {
+	CART_MODAL,
+	FAVORITES_MODAL,
+	SEARCH_MODAL,
+} from './components/modal/modalNames';
 
 const initialModalsObject = {
-	cartModal: false,
-	favoritesModal: false,
-	searchModal: false,
+	CART_MODAL: false,
+	FAVORITES_MODAL: false,
+	SEARCH_MODAL: false,
 };
 
 const App = observer(() => {

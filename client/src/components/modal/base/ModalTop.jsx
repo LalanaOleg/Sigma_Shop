@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ModalTop = ({ title, closeModal }) => {
+const ModalTop = ({ title, closeModal, className }) => {
 	return (
-		<div className="popup__top ">
+		<div className={'popup__top ' + (className ?? '')}>
 			<div className="popup__title">{title}</div>
 			<button
 				type="button"

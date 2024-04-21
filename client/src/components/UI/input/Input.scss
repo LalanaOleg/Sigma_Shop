@@ -52,11 +52,19 @@
 			border-color: red;
 		}
 
+		&::placeholder {
+			color: $greyColor;
+			transition: color 0.3s;
+		}
+
 		&:focus,
 		&:focus-visible,
 		&:focus-within {
 			border-color: $goldColor;
 			outline: none;
+			&::placeholder {
+				color: transparent;
+			}
 		}
 	}
 }

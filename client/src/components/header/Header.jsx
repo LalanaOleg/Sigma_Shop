@@ -8,14 +8,15 @@ import {
 	REGISTRATION_ROUTE,
 } from '../../utils/paths.js';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import {
-	bodyLockToggle,
-	bodyUnlock,
-	getScrollBarSize,
-} from '../../utils/functions.js';
+import { bodyLockToggle, bodyUnlock } from '../../utils/functions.js';
 import { Context } from '../../index.js';
 import { observer } from 'mobx-react';
 import './Header.scss';
+import {
+	CART_MODAL,
+	FAVORITES_MODAL,
+	SEARCH_MODAL,
+} from '../modal/modalNames.js';
 
 /**
  * @param {Object} props
@@ -24,19 +25,13 @@ import './Header.scss';
  */
 const Header = observer(({ getModalHandler }) => {
 	const [isMenuActive, setIsMenuActive] = useState(false);
-	const [addRightPadding, setAddRightPadding] = useState(false);
 	const location = useLocation();
-	const { user, cart, favorites } = useContext(Context);
+	const { user, cart, favorites, search } = useContext(Context);
 
 	// close menu on location change
 	useEffect(() => {
 		menuClose();
 	}, [location]);
-
-	// TODO: doesn`t work correctly on change in modals
-	useEffect(() => {
-		setAddRightPadding(document.documentElement.classList.contains('lock'));
-	}, [document.documentElement.classList.toString()]);
 
 	function toggleMenu() {
 		setIsMenuActive(!isMenuActive);
@@ -116,13 +111,14 @@ const Header = observer(({ getModalHandler }) => {
 							<button
 								type="button"
 								className="actions-header__icon _icon-search"
+								onClick={() => getModalHandler(SEARCH_MODAL).open()}
 							></button>
 						</li>
 						<li className="actions-header__item">
 							<button
 								type="button"
 								className="actions-header__icon _icon-heart label-value"
-								onClick={() => getModalHandler('favoritesModal').open()}
+								onClick={() => getModalHandler(FAVORITES_MODAL).open()}
 							>
 								{favorites.amountOfItems > 0 && (
 									<span>{favorites.amountOfItems}</span>
@@ -133,7 +129,7 @@ const Header = observer(({ getModalHandler }) => {
 							<button
 								type="button"
 								className="actions-header__icon _icon-cart label-value"
-								onClick={() => getModalHandler('cartModal').open()}
+								onClick={() => getModalHandler(CART_MODAL).open()}
 							>
 								{cart.amountOfItems > 0 && (
 									<span>{cart.amountOfItems}</span>

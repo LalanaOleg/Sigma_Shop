@@ -8,6 +8,7 @@ import { UserStore } from './stores/UserStore';
 import { addTouchClass } from './utils/functions';
 import { BrowserRouter } from 'react-router-dom';
 import { FavoriteStore } from './stores/FavoriteStore';
+import { SearchStore } from './stores/SearchStore';
 
 export const Context = createContext(null);
 
@@ -22,6 +23,7 @@ root.render(
 				user: new UserStore(),
 				products: new ProductStore(),
 				cart: new CartStore(),
+				searchStore: new SearchStore(),
 				favorites: new FavoriteStore(),
 			}}
 		>
