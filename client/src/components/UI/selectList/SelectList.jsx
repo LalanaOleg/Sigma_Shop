@@ -7,77 +7,28 @@ import { NavLink } from 'react-router-dom';
 export default function SelectList({ items, title }) {
 	const breakPoint = 767.98;
 	const bodyRef = useRef(null);
-	const contentRef = useRef(null);
-	let contentWidth = 0;
-
-	const selectListRef = useRef(null);
-
-	function setHeight(height) {
-		setTimeout(function () {
-			window.requestAnimationFrame(
-				() => (bodyRef.current.style.height = height + 'px')
-			);
-		}, 0);
-	}
-	useEffect(() => {
-		//initialise height
-		if (window.innerWidth < breakPoint) {
-			setHeight(0);
-		} else {
-			setHeight(contentRef.current.offsetHeight);
-		}
-		// change height and styles depends on the width of screen
-		function handleResize() {
-			if (window.innerWidth < breakPoint) {
-				if (selectListRef.current.classList.contains('big')) {
-					selectListRef.current.classList.remove('big');
-					const title =
-						selectListRef.current.querySelector('.selectList__title');
-					if (title.classList.contains('_active')) {
-						title.classList.remove('_active');
-					}
-					setHeight(0);
-				}
-				if (contentWidth != contentRef.current.offsetHeight) {
-					contentWidth = contentRef.current.offsetHeight;
-				}
-			} else {
-				if (!selectListRef.current.classList.contains('big')) {
-					selectListRef.current.classList.add('big');
-				}
-				if (contentWidth != contentRef.current.offsetHeight) {
-					contentWidth = contentRef.current.offsetHeight;
-					setHeight(contentRef.current.offsetHeight);
-				}
-			}
-		}
-
-		window.addEventListener('resize', handleResize);
-		handleResize();
-		return () => window.removeEventListener('resize', handleResize);
-	}, []);
 
 	function showBody(e) {
-		if (e.target.closest('.selectList').classList.contains('big')) return;
-		const title = e.target.closest('.selectList__title');
-		if (!title.classList.contains('_active')) {
-			setHeight(contentRef.current.offsetHeight);
-			title.classList.add('_active');
+		const listBody = bodyRef.current;
+		const title = e.target.closest('.select-list__title');
+		if (listBody.classList.contains("active")) {
+			listBody.classList.remove("active");
+			title.classList.remove('active');
 		} else {
-			setHeight(0);
-			title.classList.remove('_active');
+			listBody.classList.add("active");
+			title.classList.add('active');
 		}
 	}
 	return (
-		<ul ref={selectListRef} className="selectList">
-			<div onClick={(e) => showBody(e)} className="selectList__title">
+		<ul className="select-list">
+			<div onClick={(e) => showBody(e)} className="select-list__title">
 				{title}
 			</div>
-			<div ref={bodyRef} className="selectList__body">
-				<div ref={contentRef} className="selectList__content">
+			<div ref={bodyRef} className="select-list__body">
+				<div className="select-list__content">
 					{items.map((item) => (
-						<li key={item.title} className="selectList__element">
-							<NavLink to={item.href} className="selectList__link">
+						<li key={item.title} className="select-list__element">
+							<NavLink to={item.href} className="select-list__link">
 								{item.title}
 							</NavLink>
 						</li>

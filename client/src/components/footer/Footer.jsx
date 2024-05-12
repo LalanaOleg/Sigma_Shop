@@ -33,12 +33,12 @@ const Footer = () => {
 					</div>
 
 					<SelectList
-						className="selectList"
+						className="select-list"
 						items={listLinks}
 						title="Links"
 					/>
 					<SelectList
-						className="selectList"
+						className="select-list"
 						items={listHelp}
 						title="Help"
 					/>
