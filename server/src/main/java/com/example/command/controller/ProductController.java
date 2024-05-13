@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000/")
 @RequestMapping("api/products")
 @RequiredArgsConstructor
 public class ProductController {
@@ -24,6 +23,7 @@ public class ProductController {
     // мапер для перетворення даних
     private final ProductMapper productMapper;
 
+
     // Додавання даних до бд
     @PostMapping("/add")
     public ProductDto createProduct(@RequestBody ProductDto productDto) {
@@ -31,24 +31,37 @@ public class ProductController {
         return productMapper.toProductDto(productService.saveProduct(product));
     }
 
+    @GetMapping("/say")
+    public String say() {
+        return "hello";
+    }
+
     //пагінація для сторінки із всім товаром
     //треба доробити пошук за параметром    //swager
     //робочий приклад http://localhost:8080/api/products/shop?_page=2&_limit=3&_sort=someType
+    //http://localhost:8080/api/products/shop?page=2&limit=3&sort=someType&sortBy=price&minPrice=0&maxPrice=1000000
     @GetMapping("/shop")
-    public ResponseEntity<Page<Product>> getAllWithPagination(@RequestParam(name = "_page") int _page,
-                                                              @RequestParam(name = "_limit") int _limit,
-                                                              @RequestParam(name = "_sort") String _sort){
-        Page<Product> product = productService.productsPagination(_page,_limit);
+    public ResponseEntity<Page<Product>> getAllWithPagination(
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "limit", defaultValue = "8") int limit,
+            @RequestParam(name = "sort", defaultValue = "asc") String sort,
+            @RequestParam(name = "sortBy", required = false) String sortBy,
+            @RequestParam(name = "minPrice",defaultValue = "0") Integer minPrice,
+            @RequestParam(name = "maxPrice", required = false) Integer maxPrice,
+            @RequestParam(name = "search", required = false) String search) {
+
+        Page<Product> product = productService.productsPagination(page, limit, sort, sortBy, minPrice, maxPrice, search);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
 
+
     // Витягнути один товар по айді
     @GetMapping("/item/{productId}")
-    public ResponseEntity<ItemDto> getById(@PathVariable String productId){
+    public ResponseEntity<ItemDto> getById(@PathVariable String productId) {
 
         ItemDto itemDto = productService.getById(productId);
-        return new ResponseEntity<>(itemDto,HttpStatus.OK);
+        return new ResponseEntity<>(itemDto, HttpStatus.OK);
     }
 
 }
