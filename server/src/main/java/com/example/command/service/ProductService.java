@@ -8,6 +8,7 @@ import com.example.command.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -25,23 +26,27 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public Page<Product> productsPagination(int offset, int pageSize, String sortDirection, String sortBy, Integer minPrice, Integer maxPrice, String productName) {
-        Sort.Direction direction = sortDirection != null && sortDirection.equals("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
-        Page<Product> productsPage;
-
-        if (productName != null && !productName.isEmpty() && minPrice != null && maxPrice != null) {
-            // Перетворюємо рядок пошуку та назву продукту на нижній регістр для пошуку
-            productsPage = productRepository.findByProductNameContainingIgnoreCaseAndProductPriceBetween(productName.toLowerCase(), minPrice, maxPrice + 1, PageRequest.of(offset, pageSize, sortDirection != null && !sortDirection.isEmpty() ? Sort.by(direction, sortBy) : Sort.unsorted()));
+    public Page<Product> productsPagination(int page, int limit, String sortDirection, String sortBy, Integer minPrice, Integer maxPrice, String productName) {
+        Pageable pageable = PageRequest.of(page, limit, getSort(sortDirection, sortBy));
+        if (minPrice != null && maxPrice != null) {
+            if (productName != null && !productName.isEmpty()) {
+                return productRepository.findByProductNameContainingIgnoreCaseAndProductPriceBetween(productName.toLowerCase(), minPrice, maxPrice + 1, (PageRequest) pageable);
+            } else {
+                return productRepository.findByProductPriceBetween(minPrice, maxPrice + 1, (PageRequest) pageable);
+            }
         } else if (productName != null && !productName.isEmpty()) {
-            // Перетворюємо рядок пошуку на нижній регістр для пошуку
-            productsPage = productRepository.findByProductNameContainingIgnoreCase(productName.toLowerCase(), PageRequest.of(offset, pageSize, sortDirection != null && !sortDirection.isEmpty() ? Sort.by(direction, sortBy) : Sort.unsorted()));
-        } else if (minPrice != null && maxPrice != null) {
-            productsPage = productRepository.findByProductPriceBetween(minPrice, maxPrice + 1, PageRequest.of(offset, pageSize, sortDirection != null && !sortDirection.isEmpty() ? Sort.by(direction, sortBy) : Sort.unsorted()));
+            return productRepository.findByProductNameContainingIgnoreCase(productName.toLowerCase(), (PageRequest) pageable);
         } else {
-            productsPage = productRepository.findAll(PageRequest.of(offset, pageSize, sortDirection != null && !sortDirection.isEmpty() ? Sort.by(direction, sortBy) : Sort.unsorted()));
+            return productRepository.findAll(pageable);
         }
+    }
 
-        return productsPage.map(this::convertToCustomProduct);
+    private Sort getSort(String sortDirection, String sortBy) {
+        Sort.Direction direction = sortDirection != null && sortDirection.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+        if (sortBy != null && !sortBy.isEmpty()) {
+            return Sort.by(direction, sortBy);
+        }
+        return Sort.by(direction, "id"); // Default sorting by ID
     }
 
     public ItemDto getById(String id) {
