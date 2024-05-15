@@ -37,8 +37,6 @@ public class AuthenticationService {
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
         return AuthentificationResponce.builder()
-                .userId(user.getId()) // Передача ідентифікатора користувача
-                .role(user.getRole()) // Передача ролі користувача
                 .token(jwtToken)
                 .build();
     }
@@ -54,8 +52,6 @@ public class AuthenticationService {
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         return AuthentificationResponce.builder()
-                .userId(user.getId()) // Передача ідентифікатора користувача
-                .role(user.getRole()) // Передача ролі користувача
                 .token(jwtToken)
                 .build();
     }
