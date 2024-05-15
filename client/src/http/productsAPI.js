@@ -22,9 +22,8 @@ export class ProductsAPI {
 	 * @param {IFullProduct} product - new product
 	 */
 	static async createNewProduct(product) {
-		const response = await $authHost.post('products/add', {
-			params: { ...product },
-		});
+		const response = await $authHost.post('products/add', product);
+		console.log(response);
 		return response.data;
 	}
 }

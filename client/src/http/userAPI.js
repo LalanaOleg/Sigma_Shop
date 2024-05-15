@@ -5,7 +5,7 @@ export class UserAPI {
 	static TOKEN_NAME = 'sigma-token';
 
 	static async registration(userName, email, password) {
-		const response = await $host.post('auth/register', {
+		const response = await $host.post('auth/registration', {
 			email,
 			userName,
 			password,
@@ -13,26 +13,23 @@ export class UserAPI {
 		const data = response.data;
 		const token = data.token;
 		localStorage.setItem(UserAPI.TOKEN_NAME, token);
-		return jwtDecode(token);
+		return data;
 	}
 
 	static async login(email, password) {
-		const response = await $host.post('auth/authenticate', {
+		const response = await $host.post('auth/login', {
 			email,
 			password,
 		});
 		const data = response.data;
 		const token = data.token;
 		localStorage.setItem(UserAPI.TOKEN_NAME, token);
-		return jwtDecode(token);
+		return data;
 	}
 
-	static async check() {
-		const response = await $authHost.get('auth/auth');
-		console.log(response);
+	static async getUserInfo(userId) {
+		const response = await $host.get('user/' + userId);
 		const data = response.data;
-		const token = data.token;
-		localStorage.setItem(UserAPI.TOKEN_NAME, token);
-		return jwtDecode(token);
+		return data;
 	}
 }
