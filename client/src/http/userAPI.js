@@ -13,7 +13,7 @@ export class UserAPI {
 		const data = response.data;
 		const token = data.token;
 		localStorage.setItem(UserAPI.TOKEN_NAME, token);
-		return data;
+		return jwtDecode(token);
 	}
 
 	static async login(email, password) {
@@ -24,7 +24,7 @@ export class UserAPI {
 		const data = response.data;
 		const token = data.token;
 		localStorage.setItem(UserAPI.TOKEN_NAME, token);
-		return data;
+		return jwtDecode(token);
 	}
 
 	static async getUserInfo(userId) {

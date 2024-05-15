@@ -8,11 +8,12 @@ export class UserStore {
 		this._isAuth = false;
 		this._userData = {};
 		const token = localStorage.getItem(UserAPI.TOKEN_NAME);
+		token && console.log(jwtDecode(token));
 		if (token && verifyJWT(token)) {
 			this._isAuth = true;
 			const decodedToken = jwtDecode(token);
 			this._userData = decodedToken;
-			this.setUserId(decodedToken.sub);
+			this.setUserId(decodedToken.userId);
 			this.setRole(decodedToken.role);
 		}
 		makeAutoObservable(this);

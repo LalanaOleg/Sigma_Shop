@@ -9,6 +9,6 @@ import java.util.Objects;
 @Setter
 public class Image {
     private String name;
-    private byte[] image;
+    private String image;
 
 }
