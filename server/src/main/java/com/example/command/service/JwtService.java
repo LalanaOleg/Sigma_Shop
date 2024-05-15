@@ -1,5 +1,6 @@
 package com.example.command.service;
 
+import com.example.command.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -28,17 +29,17 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public String generateToken(UserDetails userDetails){
-        return generateToken(new HashMap<>(),userDetails);
-    }
-    public String generateToken(Map<String, Object> extraClaims,
-                                UserDetails userDetails) {
+    public String generateToken(User user) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("userId", user.getId()); // Додаємо айді користувача в пейлоад
+        claims.put("role", user.getRole().toString()); // Додаємо роль користувача в пейлоад
+
         return Jwts.builder()
-                .setClaims(extraClaims)
-                .setSubject(userDetails.getUsername())
+                .setClaims(claims)
+                .setSubject(user.getEmail())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
-                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24)) // Тут можна задати час життя токена
+                .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
                 .compact();
     }
 
