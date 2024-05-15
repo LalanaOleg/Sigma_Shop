@@ -4,10 +4,11 @@ import { jwtDecode } from 'jwt-decode';
 export class UserAPI {
 	static TOKEN_NAME = 'sigma-token';
 
-	static async registration(userName, email, password) {
+	static async registration(firstname, lastname, email, password) {
 		const response = await $host.post('auth/registration', {
 			email,
-			userName,
+			firstname,
+			lastname,
 			password,
 		});
 		const data = response.data;

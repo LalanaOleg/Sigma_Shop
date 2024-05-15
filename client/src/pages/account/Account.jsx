@@ -37,7 +37,9 @@ const Account = () => {
 					{!userInfo || isUserInfoLoading ?
 						<Loader className="account__loader" />
 					:	<>
-							<div className="account__name">{userInfo.userName}</div>
+							<div className="account__name">
+								{userInfo.firstname + ' ' + userInfo.lastname}
+							</div>
 							<div className="account__contacts">
 								<a className="account__email">{userInfo.email}</a>
 							</div>

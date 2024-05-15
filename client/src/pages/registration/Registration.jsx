@@ -15,7 +15,8 @@ const Registration = observer(() => {
 	const { user } = useContext(Context);
 	const navigation = useNavigate();
 
-	const [userName, setUserName] = useState('');
+	const [firstName, setFirstName] = useState('');
+	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -24,7 +25,12 @@ const Registration = observer(() => {
 
 		try {
 			e.preventDefault();
-			const data = await UserAPI.registration(userName, email, password);
+			const data = await UserAPI.registration(
+				firstName,
+				lastName,
+				email,
+				password
+			);
 			user.setIsAuth(true);
 			console.log(data);
 			user.setUserData(data);
@@ -38,18 +44,30 @@ const Registration = observer(() => {
 
 	return (
 		<main>
-			<Heading title='Registration'/>
+			<Heading title="Registration" />
 			<Container className="registration">
 				<form method="POST" onSubmit={signUp}>
 					<h1 className="registration__form-title">Sign up</h1>
 					<section className="registration__field">
 						<Input
-							id="name"
-							name="name"
-							autoComplete="name"
-							label="User Name"
+							id="firstName"
+							name="firstName"
+							autoComplete="firstName"
+							label="First Name"
 							onChange={(e) => {
-								setUserName(e.target.value);
+								setFirstName(e.target.value);
+							}}
+							required
+						/>
+					</section>
+					<section className="registration__field">
+						<Input
+							id="lastName"
+							name="lastName"
+							autoComplete="lastName"
+							label="Last Name"
+							onChange={(e) => {
+								setLastName(e.target.value);
 							}}
 							required
 						/>
@@ -84,12 +102,19 @@ const Registration = observer(() => {
 						</div>
 					</section>
 					<section className="registration__buttons">
-						<Button className="registration__button" type="submit" id="sign-up">
+						<Button
+							className="registration__button"
+							type="submit"
+							id="sign-up"
+						>
 							Sign up
 						</Button>
 						<div className="registration__footer-text">
 							Have account ?
-							<Link className="registration__footer-link" to={LOGIN_ROUTE}>
+							<Link
+								className="registration__footer-link"
+								to={LOGIN_ROUTE}
+							>
 								Log in !
 							</Link>
 						</div>
