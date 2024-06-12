@@ -23,5 +23,5 @@ public class ProductDto {
     private String productCategory;
     private String productSku;
     private String productColor;
-    private List<Review> productReviews;
+//    private List<Review> productReviews;
 }

@@ -126,9 +126,9 @@ const AdminMenu = () => {
 		}
 
 		if (!anyHasError) {
-			product.images = product.images.map((image, index) => {
+			product.images = product.images.map((imageBytes, index) => {
 				return {
-					image: image,
+					image: imageBytes,
 					name: product.productName + ' ' + (index + 1),
 				};
 			});

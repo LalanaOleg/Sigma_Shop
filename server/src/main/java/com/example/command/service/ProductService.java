@@ -65,7 +65,7 @@ public class ProductService {
         itemDto.setImages(product.getImages());
         itemDto.setProductCategory(product.getProductCategory());
         itemDto.setProductSku(product.getProductSku());
-        itemDto.setProductReviews(product.getProductReviews());
+//        itemDto.setProductReviews(product.getProductReviews());
 
 
         List<Product> sameProducts = productRepository.findAllByProductName(product.getProductName());
@@ -82,14 +82,15 @@ public class ProductService {
 
         itemDto.setProductColors(set.stream().toList());
 
-        List<Review> reviews = product.getProductReviews();
-
-        int sumReview = 0;
-        for(Review r : reviews ){
-            sumReview += r.getRate();
-        }
-        itemDto.setAmountOfReviews(reviews.size());
-        itemDto.setAverageRate(sumReview/ reviews.size());
+//        List<Review> reviews = product.getProductReviews();
+//
+//        int sumReview = 0;
+//        for(Review r : reviews ){
+//            sumReview += r.getRate();
+//        }
+//        itemDto.setAmountOfReviews(reviews.size());
+//        itemDto.setAverageRate(sumReview/ reviews.size());
+        itemDto.setAverageRate(4);
 
 
 

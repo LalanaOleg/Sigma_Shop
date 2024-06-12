@@ -25,7 +25,7 @@ public class ProductMapper {
         productDto.setProductCategory(product.getProductCategory());
         productDto.setProductSku(product.getProductSku());
         productDto.setProductColor(product.getProductColor());
-        productDto.setProductReviews(product.getProductReviews());
+//        productDto.setProductReviews(product.getProductReviews());
 
         return productDto;
     }
@@ -44,7 +44,7 @@ public class ProductMapper {
         product.setProductCategory(productDto.getProductCategory());
         product.setProductSku(productDto.getProductSku());
         product.setProductColor(productDto.getProductColor());
-        product.setProductReviews(productDto.getProductReviews());
+//        product.setProductReviews(productDto.getProductReviews());
 
         return product;
     }
